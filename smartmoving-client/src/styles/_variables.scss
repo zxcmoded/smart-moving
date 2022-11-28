@@ -1,0 +1,109 @@
+@import 'style-guide/color-variables';
+//
+// Variables
+//
+
+// Color system
+
+// Only used in two spots, not a good match.
+$off-gray: #ccd7e3;
+
+// "wat", you say?  Waiting on Trevor to address.  
+$black: #111;
+
+// Used by Bootstrap directly.
+$white: $white-600;
+
+$theme-colors: (
+        primary: $primary,
+        secondary: $blue-gray,
+        success: $success,
+        warning: $warning,
+        danger: $red,
+        light: $gray-filled-100,
+        dark: $gray-filled-600,
+        grey: $gray-filled-500,
+        dark-green: $success-500,
+        purple: $purple,
+        orange: $warning
+);
+
+$border-color: $gray-filled-200;
+
+$text-muted: $gray-filled-200;
+
+// Grid
+$grid-gutter-width: 3.125rem; // Roughly 50px with a 16px base
+
+// Tooltips
+$tooltip-arrow-width: 10px;
+$tooltip-arrow-height: 10px;
+$tooltip-padding-y: 10px;
+$tooltip-padding-x: 20px;
+$tooltip-margin: 5px 0;
+
+// Border radius
+$border-radius: 4px;
+
+// Header
+$header-height: 3.5rem;
+
+// Sidenav
+$sidenav-width: 70px;
+
+// Popovers
+$popover-arrow-outer-color: rgba(17, 17, 17, 0.1);
+$popover-header-bg: $white-600;
+
+//
+// Fonts
+//
+
+@import url('https://use.typekit.net/fai0uej.css');
+
+$font-family-sans-serif: 'proxima-soft', sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+$font-weight-bold: 500;
+
+$font-breakpoint-lg: 1336px;
+$font-breakpoint-md: 1024px;
+
+$h1-font-size: 2rem;
+$h2-font-size: 1.5rem;
+$h3-font-size: 1.125rem;
+$h4-font-size: 1rem;
+$h5-font-size: 0.875rem;
+$h6-font-size: 0.75rem;
+
+//
+// Links
+//
+
+$link-color: $black;
+$link-decoration: underline;
+$link-hover-decoration: none;
+
+//
+// Buttons
+//
+$input-btn-padding-x: 0.57rem;
+
+// Subheader
+$subheader-border-color: $off-gray;
+
+// Z-Index Values
+$zindex-dropdown: 1000 !default;
+$zindex-sticky: 1020 !default;
+$zindex-fixed: 1030 !default;
+$zindex-modal-backdrop: 1040 !default;
+$zindex-modal: 1050 !default;
+// NOTE: Do not change this.  It will cause popovers to show up on top of slideouts, modals, etc. 
+$zindex-popover: 1060 !default;
+$zindex-tooltip: 1070 !default;
+$zindex-slideout: 1100;
+$zindex-select: 1200;
+$zindex-popover-in-overlay: 1200;
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 165 !default;

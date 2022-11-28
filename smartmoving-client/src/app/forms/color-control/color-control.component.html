@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label [attr.for]="inputId">{{labelText}}</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">#</span>
+    </div>
+    <input autocomplete="{{autocompleteValue}}"
+           type="text"
+           id="{{inputId}}"
+           name="{{finalInputName}}"
+           class="form-control"
+           [formControl]="colorControl"
+           [placeholder]="placeholder ? placeholder : labelText"
+           maxlength="6"
+           minlength="3"
+           (keypress)="omitSpecialChar($event)"
+           [required]="isRequiredControl"
+           [attr.data-test-id]="finalDataTestId">
+    <div class="input-group-append input-group-clear">
+      <span class="input-group-text">
+        <span class="color" *ngIf="colorControl.value" [ngStyle]="{'background-color': '#'+colorControl.value}"></span>
+      </span>
+    </div>
+  </div>
+  <sm-input-help-text [control]="this"></sm-input-help-text>
+</div>

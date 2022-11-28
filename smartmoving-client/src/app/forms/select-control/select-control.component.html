@@ -1,0 +1,48 @@
+﻿<div class="form-group {{optionsWidthCssClass}}"
+     [class.mb-0]="noMargin"
+     *ngIf="!showNgContent">
+  <sm-input-label [control]="this" [labelRowEndContent]="labelActionTemplateRef"></sm-input-label>
+  <ng-select #ngSelectElement
+             [formControl]="formControl"
+             [searchable]="isSearchable"
+             [clearable]="isClearable"
+             bindValue="{{bindValue}}"
+             bindLabel="{{bindLabel}}"
+             [items]="items$ | async"
+             labelForId="{{inputId}}"
+             [typeahead]="searchInput$"
+             [trackByFn]="trackByFn"
+             [minTermLength]="minSearchTermLength"
+             [typeToSearchText]="typeToSearchText"
+             [placeholder]="placeholder"
+             [appendTo]="appendTo"
+             (change)="selectionChangedInternal($event)"
+             [isOpen]="isOpen"
+             (blur)="onBlur()"
+             (search)="searchEvent.emit($event.term)"
+             (clear)="clearEvent.emit()"
+             [attr.data-test-id]="finalDataTestId"
+             (close)="closed()"
+             [inputAttrs]="{'autocomplete': 'new-password'}">
+
+    <ng-template *ngIf="optionTemplateRef" ng-option-tmp let-item="item" let-index="index" let-searchTerm="searchTerm">
+      <ng-container [ngTemplateOutlet]="optionTemplateRef"
+                    [ngTemplateOutletContext]="{item: item, index: index, searchTerm: searchTerm}">
+      </ng-container>
+    </ng-template>
+
+    <ng-template *ngIf="optionalLabelTemplateRef" ng-label-tmp let-item="item">
+      <ng-container [ngTemplateOutlet]="optionalLabelTemplateRef"
+                    [ngTemplateOutletContext]="{item: item}">
+      </ng-container>
+    </ng-template>
+
+    <ng-template *ngIf="!optionTemplateRef" ng-option-tmp let-item="item" let-searchTerm="searchTerm">
+      <span class="white-space-normal" [attr.data-test-id]="finalDataTestId + item[bindLabel]">{{ item[bindLabel] }}</span>
+    </ng-template>
+
+  </ng-select>
+</div>
+
+<ng-content *ngIf="showNgContent">
+</ng-content>

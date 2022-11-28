@@ -1,0 +1,30 @@
+﻿@import 'shadows-variables';
+
+.sm-shadow-smaller {
+  box-shadow: $sm-shadow-smaller;
+}
+
+.sm-shadow-small {
+  box-shadow: $sm-shadow-small;
+}
+
+.sm-shadow {
+  box-shadow: $sm-shadow;
+}
+
+.sm-shadow-large {
+  box-shadow: $sm-shadow-large;
+}
+
+.sm-shadow-larger {
+  box-shadow: $sm-shadow-larger;
+}
+
+.sm-shadow-largest {
+  box-shadow: $sm-shadow-largest;
+}
+
+.sm-shadow-huge {
+  box-shadow: $sm-shadow-huge;
+}
+

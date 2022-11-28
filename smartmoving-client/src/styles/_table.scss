@@ -1,0 +1,319 @@
+@import '~styles/custom-breakpoints';
+
+$table-border-color: $gray-200;
+
+.table-responsive {
+  overflow: auto;
+}
+
+.table {
+  &.loading {
+    position: relative;
+
+    thead {
+      position: relative;
+    }
+
+    tbody {
+      position: relative;
+    }
+
+    sm-loading-overlay {
+      position: absolute;
+      background-color: white;
+      z-index: 1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    // Chrome only
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      .selector:not(*:root), sm-loading-overlay {
+        top: 44px;
+        left: 1px;
+      }
+    }
+  }
+
+  // These are used for when you need to set a column to an explicit width.
+  // In particular, made for when using the actions bar. In cases where
+  // the header row columns are wider than the data in them, this will cause the columns
+  // to have a different width as you're toggling the actions bar on/off.
+  // Using these prevents that.
+  th.col-checkbox,
+  td.col-checkbox {
+    padding-left: 0.9rem;
+    min-width: 50px;
+    vertical-align: top;
+  }
+
+  th.col-actions,
+  td.col-actions {
+    width: 50px;
+  }
+
+  th.col-job-number,
+  td.col-job-number {
+    min-width: 80px;
+  }
+
+  th.col-short-date,
+  td.col-short-date {
+    min-width: 120px;
+  }
+
+  th.col-dollar-amount,
+  td.col-dollar-amount {
+    min-width: 110px;
+  }
+
+  th.col-dollar-amount-large,
+  td.col-dollar-amount-large {
+    min-width: 150px;
+  }
+
+  thead th,
+  tbody tr.table-row-extra-header th {
+    height: 2.8125rem;
+    border: none;
+    background: transparent;
+    text-transform: uppercase;
+    color: $gray-600;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+
+    &.th-sortable {
+      cursor: pointer;
+
+      &:hover,
+      &.th-sortable-active {
+        background-color: theme-color-level(primary, -10);
+      }
+
+      &:after {
+        content: '\f0dc';
+        font-family: 'fontawesome' !important;
+        padding-left: 5px;
+        color: $gray-500;
+      }
+
+      &.th-sortable-asc:after {
+        content: '\f0dd';
+        color: $primary;
+      }
+
+      &.th-sortable-desc:after {
+        content: '\f0de';
+        color: $primary;
+      }
+    }
+  }
+
+  tbody td,
+  tbody th {
+    font-size: $h5-font-size;
+    border-top: 1px solid $table-border-color;
+    padding: 0.9rem;
+    white-space: nowrap;
+  }
+
+  thead tr,
+  tbody tr.table-row-extra-header {
+    background: $blue-gray;
+    border-left: 1px solid $table-border-color;
+    border-right: 1px solid $table-border-color;
+    border-top: 1px solid $table-border-color;
+  }
+
+  tbody tr {
+    margin: 3px 0;
+    border-bottom: 1px solid $white-600;
+    border: 1px solid $table-border-color;
+    background-color: $white-600;
+    outline: none;
+    transition: all 300ms ease-out;
+
+    &:hover {
+      background-color: $blue-gray;
+    }
+  }
+
+  tbody tr[ng-reflect-router-link] {
+    cursor: pointer;
+  }
+
+  &.no-stripe tbody tr:hover {
+    background-color: $white-600;
+  }
+
+  .table:not([class*="table-without-the-stupid"]) thead th {
+    padding: 14px 12px 16px 0.9rem;;
+    background: $blue-gray;
+
+    input[type='checkbox'] {
+      top: -4px;
+      left: 7px;
+    }
+  }
+
+  tbody {
+    a {
+      font-size: $h5-font-size;
+      text-decoration: none;
+      color: $primary;
+    }
+
+    .badge {
+      font-size: $h5-font-size;
+      font-weight: normal;
+      padding: 5px 8px;
+    }
+
+    td {
+      &.d-flex {
+        border-top: 0;
+      }
+
+      &:last-child, &.actions-cell {
+        [class^='icon-'],
+        [class*=' icon-'],
+        [class^='fa-'],
+        [class*=' fa-'],
+        &.fa {
+          min-width: 31px;
+          text-align: center;
+          font-size: 18px;
+          padding: 5px;
+          background: transparent;
+          border-radius: 50%;
+          cursor: pointer;
+          margin-right: 0 !important;
+          transition: all 300ms ease-out;
+
+          &:last-child {
+            margin-right: 0 !important;
+          }
+
+          &:hover {
+            background: $gray-100;
+          }
+        }
+      }
+    }
+  }
+}
+
+.table {
+  &.table-borderless {
+    border: 1px solid #dadada;
+
+    tr,
+    td {
+      border: none;
+      background: transparent;
+    }
+
+    tbody td {
+      padding: 5px 0.9rem;
+    }
+  }
+
+  &.table-font-size-larger {
+    thead th {
+      font-size: larger;
+    }
+
+    tbody td,
+    tbody th {
+      font-size: larger;
+    }
+  }
+}
+
+.table.cursor-default {
+  &, & tr > td {
+    cursor: default !important;
+  }
+}
+
+.table.no-hover {
+  & tr:hover {
+    background-color: transparent !important;
+  }
+}
+
+.filter {
+  margin-top: 4px;
+}
+
+.filter-label {
+  position: relative;
+
+  span {
+    color: $gray-500;
+  }
+}
+
+.specific-filter {
+  margin-bottom: 1rem !important;
+
+  .nav-item {
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 300ms ease-out;
+    cursor: pointer;
+
+    &:hover {
+      color: transparentize($primary, 0.2) !important;
+    }
+
+    // Mimmic how the body font-size shrinks in styles.scss
+    @include media-breakpoint-custom-medium {
+      font-size: 14px;
+    }
+    @include media-breakpoint-custom-small {
+      font-size: 12px;
+    }
+  }
+}
+
+table.no-td-border {
+  tr + tr:not(.will-have-border) {
+    border-top: 0;
+  }
+
+  td {
+    border: 0;
+  }
+}
+
+.settings-content .table tbody tr td {
+  white-space: initial;
+}
+
+.table {
+  tbody.table-no-hover {
+    tr:hover {
+      background: none;
+    }
+  }
+}
+
+.table-vertical-align-middle {
+  tr td {
+    vertical-align: middle;
+  }
+}
+
+.table-col-expand {
+  width: 99%;
+}
+
+table.table.padded-cells {
+  td {
+    padding: 16px;
+  }
+}

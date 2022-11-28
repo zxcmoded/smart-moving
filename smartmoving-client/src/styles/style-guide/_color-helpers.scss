@@ -1,0 +1,18 @@
+﻿@import 'color-variables';
+
+@each $name, $color in $sm-theme-colors {
+
+  .sm-text-#{$name} {
+    color: $color !important;
+  }
+
+  .sm-bg-#{$name} {
+    background-color: $color !important;
+  }
+
+  // NOTE: We *might* not keep this.  Borders are still being hashed out in Figma. 
+  .sm-border-#{$name} {
+    border-color: $color;
+  }
+
+}

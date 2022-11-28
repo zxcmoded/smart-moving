@@ -1,0 +1,218 @@
+﻿@use 'sass:math';
+
+@import 'color-variables';
+@import 'forms-variables';
+
+$checkbox-size: calc(1rem + #{2*$border-width});
+$checked-size: calc(1rem + #{$border-width});
+$half-border-size: #{math.div($border-width, 2)};
+$checkbox-left-padding: 0.5rem;
+
+$padded-extra-padding: #{$checkbox-left-padding};
+
+// This is to work with our line height. Since label::before is funky, we can't just
+// put this in a 100% height container and vertically align. So we have to adjust manually.
+$top-adjustment: -0.1875rem;
+
+// When in a popover list, we don't need / want the padding. Not a typical form.
+.item .form-check {
+  margin-bottom: 0;
+}
+
+.form-check:not(.form-radio) {
+  display: flex;
+  transition: $form-transition;
+
+  &.form-check-padded {
+    padding-left: 0;
+    cursor: pointer;
+  }
+
+  // This makes it line up with a standard textbox.
+  &.form-check-align-with-inputs {
+    // Make space for the label for when in a BS grid
+    padding-top: 1.55em;
+  }
+
+  .form-check-input {
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .form-check-label {
+    color: $normal-text-color;
+  }
+
+  &.form-check-right .input-group {
+    display: flex;
+    justify-content: space-between;
+
+    input[type='checkbox'] {
+      &:before {
+        right: 0;
+        left: unset;
+      }
+
+      &:after {
+        right: $half-border-size;
+        left: unset;
+      }
+    }
+  }
+
+  &.form-check-padded {
+    .input-group {
+      padding: .7rem;
+    }
+
+    input[type='checkbox'] {
+      &:before {
+        left: #{$padded-extra-padding};
+      }
+
+      &:after {
+        left: calc(#{$border-width} / 2 + #{$padded-extra-padding});
+      }
+
+      ~ label {
+        padding-left: 1.75rem;
+      }
+    }
+
+    &.form-check-right {
+      input[type='checkbox'] {
+        &:before {
+          right: #{$padded-extra-padding};
+          left: unset;
+        }
+
+        &:after {
+          right: calc(#{$half-border-size} + #{$padded-extra-padding});
+          left: unset;
+        }
+
+        ~ label {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  // These are for iOS
+  border: 0;
+  width: 0;
+  height: 0;
+}
+
+input[type='checkbox'] {
+  &:before {
+    content: '';
+    position: absolute;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    right: 0;
+    top: $half-border-size;
+    background: $white-600;
+    border-radius: $form-border-radius;
+    border: $normal-border;
+  }
+
+  &:after {
+    font-family: 'smicon';
+    content: '\f17b' !important;
+    width: $checked-size;
+    height: $checked-size;
+    position: absolute;
+    top: $border-width;
+    right: 1px;
+    border-radius: $form-border-radius;
+    transform: scale(0.8);
+    transition: $form-transition;
+    color: $white-600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+  }
+
+  ~ label {
+    color: $normal-text-color;
+    width: 100%;
+    margin-left: $checkbox-left-padding;
+  }
+
+  &:checked {
+    &:after {
+      transform: scale(1);
+      background-color: $primary;
+    }
+  }
+}
+
+.sm-form-submitted,
+.sm-form-group-touched {
+  .sm-form-group-invalid,
+  &.sm-form-group-invalid {
+    // form-check may be at form-group level, or nested.
+    .form-check,
+    &.form-check {
+      &:not(.form-check-padded) .input-group {
+        background-color: unset;
+      }
+
+      input[type="checkbox"] {
+        &:not(:focus-within):before {
+          border-color: $invalid-border-color;
+          background-color: $invalid-background-color;
+        }
+
+        &:after {
+          background-color: $invalid-background-color;
+          color: $invalid-background-color;
+        }
+
+        &:checked:after {
+          color: $white-600;
+        }
+      }
+    }
+  }
+}
+
+.sm-form-group-disabled {
+  // form-check may be at form-group level, or nested.
+  .form-check,
+  &.form-check {
+    .form-check-label {
+      color: $normal-text-color;
+    }
+
+    input[type="checkbox"] {
+      &:before {
+        border-color: $disabled-border-color;
+        background-color: $gray-filled-100;
+      }
+
+      &:after {
+        color: $gray-filled-100;
+      }
+
+      &:checked:after {
+        background-color: $primary-300;
+        color: $white-600;
+      }
+    }
+  }
+}
+
+input[type="checkbox"] {
+  &:focus-within:before {
+    border-color: $primary;
+  }
+}

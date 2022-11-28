@@ -1,0 +1,21 @@
+{
+  "RoslynExtensionsOptions": {
+    "enableAnalyzersSupport": false,
+    "documentAnalysisTimeoutMs": 2000,
+    "enableImportCompletion": true
+  },
+  "FileOptions": {
+    "excludeSearchPatterns": [
+    ]
+  },
+  "FormattingOptions": {
+    "enableEditorConfigSupport": true
+  },
+  "script": {
+    "enabled": false
+  },
+  "cake": {
+    "enabled": false
+  }
+  
+}

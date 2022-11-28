@@ -1,0 +1,48 @@
+<div class="modal-template" [smStopClickPropagation]="stopClickPropagation">
+
+  <ng-container *ngIf="showHeader">
+    <div *ngIf="!headerTemplateRef" class="modal-header" [ngClass]="modalAlertLevel + ' ' + modalHeaderClass">
+      <h2>{{ title }}</h2>
+      <a *ngIf="showDismissButton" class="modal-close icon-close" mat-dialog-close></a>
+    </div>
+    <ng-template *ngIf="headerTemplateRef" [ngTemplateOutlet]="headerTemplateRef"></ng-template>
+  </ng-container>
+
+  <div class="modal-body" [ngClass]="modalBodyClass">
+    <ng-content select="[modalBody]"></ng-content>
+  </div>
+
+  <div *ngIf="showFooter" class="modal-footer">
+    <button type="button"
+            class="btn btn-cancel"
+            [disabled]="isBusyState"
+            (click)="secondaryAction.emit($event)"
+            [attr.data-test-id]="'secondaryButton'"
+            *ngIf="showSecondaryButton">
+      {{ secondaryButtonText }}
+    </button>
+    <button type="button"
+            class="btn"
+            [ngClass]="tertiaryButtonClass"
+            (click)="tertiaryAction.emit($event)"
+            [disabled]="isBusyState"
+            [attr.data-test-id]="'tertiaryButton'"
+            *ngIf="showTertiaryButton">
+      {{ tertiaryButtonText }}
+    </button>
+    <button *ngIf="primaryButtonText"
+            type="button"
+            class="btn"
+            [ngClass]="primaryButtonClass"
+            [disabled]="isBusyState || primaryButtonDisableState"
+            (click)="primaryAction.emit($event)"
+            [ngbTooltip]="primaryButtonTooltip"
+            [attr.data-test-id]="'primaryButton'"
+            [disableTooltip]="primaryButtonTooltipDisableState"
+            [smAutoFocus]="primaryButtonFocus">
+      <span *ngIf="isBusyState" class="fa fa-spin fa-spinner"></span>
+      {{ primaryButtonText }}
+    </button>
+  </div>
+
+</div>

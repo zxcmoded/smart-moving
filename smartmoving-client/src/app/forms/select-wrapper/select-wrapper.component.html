@@ -1,0 +1,16 @@
+﻿<div class="form-group" [class.d-none]="hide || !loaded">
+  <label *ngIf="showLabel" [for]="id">{{ label || placeholder }}
+    <ng-container *ngIf="isRequired"> *</ng-container>
+  </label>
+  <select class="select-basic form-control" [id]="id" [name]="name || id" [class.d-none]="!loaded">
+    <option></option>
+  </select>
+</div>
+
+<sm-pseudo-input-control *ngIf="!loaded"
+                         labelText="{{showLabel ? (label || placeholder) : null }}">
+  Loading...
+</sm-pseudo-input-control>
+
+<ng-content *ngIf="!options?.length && displayNgContentOnEmptyResults">
+</ng-content>

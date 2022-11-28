@@ -1,0 +1,10 @@
+<div class="wrapper">
+
+  <sm-app-header *ngIf="!hideHeader"></sm-app-header>
+
+  <div class="main-layout-flex d-flex flex-row">
+    <sm-app-sidenav *ngIf="!hideMenu"></sm-app-sidenav>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

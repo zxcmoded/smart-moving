@@ -1,0 +1,20 @@
+@import '~styles/variables';
+
+:host {
+  color: $primary;
+}
+
+:host ::ng-deep {
+  .popover-header {
+    display: none;
+  }
+  .popover .popover-body {
+    background-color: white;
+    padding: 12px;
+  }
+}
+
+.popover-container {
+  max-height: 410px;
+  overflow-y: auto;
+}

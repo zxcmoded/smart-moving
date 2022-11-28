@@ -1,0 +1,73 @@
+<div class="main p-4">
+  <div class="content mb-4">
+    <div class="d-flex align-items-center subheader px-4">
+      <div class="align-items-center d-flex mr-auto">
+        <h1 class="m-0 font-weight-light">Customers</h1>
+        <div class="small ml-3" *ngIf="page">{{ page?.totalResults }} total</div>
+      </div>
+    </div>
+
+    <div class="row row-sales-content">
+      <div class="col-filter col-sm">
+        <ul class="filter">
+          <li *ngFor="let filter of quickFilters; let i = index;" (click)="setActiveFilter(i)" [class.active]="i === activeQuickFilter">
+            <span class="filter-label">
+              <span>{{ filter.name }}</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-table pl-2 pr-4">
+
+        <form [formGroup]="customerFilterForm" class="specific-filter d-flex align-items-center mb-4">
+          <sm-search-control formControlName="Name"
+                             placeholder="Search customers...">
+          </sm-search-control>
+        </form>
+
+        <div class="table-responsive">
+          <table class="table" [class.loading]="isLoading && hasLoaded">
+            <thead>
+              <tr>
+                <th scope="col" [(smTableSort)]="currentSort" column="name" (smTableSortChange)="sortedEvent$.next($event)">Name</th>
+                <th scope="col" [(smTableSort)]="currentSort" column="emailAddress" (smTableSortChange)="sortedEvent$.next($event)">Email</th>
+                <th scope="col" [(smTableSort)]="currentSort" column="hasAccount" (smTableSortChange)="sortedEvent$.next($event)">Has Account</th>
+                <th scope="col" [(smTableSort)]="currentSort" column="employeeNumber" (smTableSortChange)="sortedEvent$.next($event)">Employee Number</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="isLoading && !hasLoaded">
+              <tr>
+                <td colspan="6">
+                  <sm-loading-overlay></sm-loading-overlay>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="hasLoaded">
+              <sm-loading-overlay *ngIf="isLoading"></sm-loading-overlay>
+              <tr *ngIf="customers.length === 0">
+                <td colspan="6">No customers match your filters. Try choosing a different filter or changing your search.</td>
+              </tr>
+              <tr *ngFor="let customer of customers" [routerLink]="['details', customer.id]">
+                <td>
+                  <a class="link" [routerLink]="['details', customer.id]" smStopClickPropagation>
+                    {{ customer.name }}
+                  </a>
+                </td>
+                <td>{{ customer.emailAddress }}</td>
+                <td>{{ customer.hasAccount }}</td>
+                <td>{{ customer.employeeNumber | truncate:10 }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <sm-pager (showPage)="pagerEvent$.next($event)" [currentPage]="page" pageSize="30"></sm-pager>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noContent>
+  <td>--</td>
+</ng-template>

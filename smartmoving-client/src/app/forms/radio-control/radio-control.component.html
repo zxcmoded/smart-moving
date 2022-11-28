@@ -1,0 +1,28 @@
+<div class="form-group form-check form-radio"
+     [class.form-check-inline]="isInline"
+     [class.mb-0]="isInline">
+  <input *ngIf="formControl"
+         type="radio"
+         class="form-check-input"
+         [attr.id]="inputId"
+         [attr.name]="inputName"
+         [formControl]="$any(formControl)"
+         [value]="inputValue"
+         (change)="valueChange.emit(formControl.value)"
+         [required]="isRequired"
+         [attr.data-test-id]="finalDataTestId">
+  <input *ngIf="formControlName"
+         type="radio"
+         class="form-check-input"
+         [attr.id]="inputId"
+         [attr.name]="inputName"
+         [formControlName]="formControlName"
+         [value]="inputValue"
+         [required]="isRequired"
+         [attr.data-test-id]="finalDataTestId">
+  <label class="form-check-label"
+         [class.w-99]="useFullWidthLabel"
+         [attr.for]="inputId">
+    <ng-content></ng-content>
+  </label>
+</div>

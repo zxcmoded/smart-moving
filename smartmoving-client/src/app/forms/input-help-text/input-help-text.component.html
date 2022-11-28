@@ -1,0 +1,7 @@
+<small class="form-text" *ngIf="control.helpText || control.helpIconClass">
+  <span class="{{control.helpIconClass}}" *ngIf="control.helpIconClass"></span> {{control.helpText}}
+</small>
+
+<small class="form-text" *ngIf="control.helpTemplateRef">
+  <ng-template [ngTemplateOutlet]="control.helpTemplateRef"></ng-template>
+</small>

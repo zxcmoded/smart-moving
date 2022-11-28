@@ -1,0 +1,73 @@
+@import '~styles/variables';
+@import '~styles/functions';
+@import '~styles/popovers';
+
+::ng-deep .nav-topnav {
+  [class^='icon-'],
+  [class*=' icon-'] {
+    font-size: 23px;
+    color: $gray-600;
+  }
+
+  .icon-magnifier {
+    font-size: 16px;
+  }
+
+  .nav-item {
+    position: relative;
+
+    .nav-link {
+      text-decoration: none;
+    }
+
+    > .badge {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 10px;
+      pointer-events: none;
+    }
+
+    &:hover {
+      .fa,
+      [class^='icon-'],
+      [class*=' icon-'] {
+        color: $primary;
+      }
+    }
+  }
+
+  [class^='icon-'],
+  [class*=' icon-'] {
+    color: $gray-600;
+    transition: all 300ms ease-out;
+  }
+}
+
+:host ::ng-deep .profile-picture {
+  background: #f49c20;
+  margin: 0 15px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.separator {
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  max-height: 24px;
+  position: relative;
+  top: 50%;
+  margin-top: -12px;
+}
+
+.brand img {
+  // Static pixels because we don't want this to scale as the browser window gets smaller.
+  max-width: 160px;
+}

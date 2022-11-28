@@ -1,0 +1,140 @@
+{
+  "$schema" : "./node_modules/@angular/cli/lib/config/schema.json",
+  "version" : 1,
+  "newProjectRoot" : "projects",
+  "projects" : {
+    "smart-moving" : {
+      "root" : "",
+      "sourceRoot" : "src",
+      "projectType" : "application",
+      "architect" : {
+        "build" : {
+          "builder" : "@angular-builders/custom-webpack:browser",
+          "options" : {
+            "customWebpackConfig" : {
+              "path" : "./extra-webpack.config.js",
+              "replaceDuplicatePlugins" : true,
+              "mergeStrategies" : {
+                "externals" : "prepend"
+              }
+            },
+            "outputPath" : "dist",
+            "index" : "src/index.html",
+            "main" : "src/main.ts",
+            "tsConfig" : "src/tsconfig.app.json",
+            "polyfills" : "src/polyfills.ts",
+            "assets" : [
+              "src/assets",
+              "src/favicon.png",
+              "src/Web.config"
+            ],
+            "styles" : [
+              "font-awesome/scss/font-awesome.scss",
+              "select2/src/scss/core.scss",
+              "src/styles/styles.scss",
+              "src/styles/angular-material.scss"
+            ],
+            "scripts" : [
+              "select2/dist/js/select2.full.min.js"
+            ]
+          },
+          "configurations" : {
+            "local" : {
+              "buildOptimizer" : false,
+              "optimization" : false,
+              "vendorChunk" : true,
+              "extractLicenses" : false,
+              "sourceMap" : true,
+              "namedChunks" : true,
+              "fileReplacements" : [
+                {
+                  "replace" : "src/environments/environment.ts",
+                  "with" : "src/environments/environment.local.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve" : {
+          "builder" : "@angular-devkit/build-angular:dev-server",
+          "options" : {
+            "browserTarget" : "smart-moving:build"
+          },
+          "configurations" : {
+            "local" : {
+              "browserTarget" : "smart-moving:build:local"
+            }
+          }
+        },
+        "extract-i18n" : {
+          "builder" : "@angular-devkit/build-angular:extract-i18n",
+          "options" : {
+            "browserTarget" : "smart-moving:build"
+          }
+        },
+        "test" : {
+          "builder" : "@angular-devkit/build-angular:karma",
+          "options" : {
+            "main" : "src/test.ts",
+            "karmaConfig" : "./karma.conf.js",
+            "polyfills" : "src/polyfills.ts",
+            "tsConfig" : "src/tsconfig.spec.json",
+            "scripts" : [
+              "jquery/dist/jquery.min.js",
+              "select2/dist/js/select2.full.min.js"
+            ],
+            "styles" : [
+              "font-awesome/scss/font-awesome.scss",
+              "select2/src/scss/core.scss",
+              "src/styles/styles.scss",
+              "src/styles/angular-material.scss",
+              "src/styles/inventory-items-map.css"
+            ],
+            "assets" : [
+              "src/assets",
+              "src/favicon.png",
+              "src/Web.config"
+            ]
+          }
+        },
+        "lint" : {
+          "builder" : "@angular-eslint/builder:lint",
+          "options" : {
+            "lintFilePatterns" : [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "schematics" : {
+    "@schematics/angular:class" : {
+      "skipTests" : true
+    },
+    "@schematics/angular:component" : {
+      "skipTests" : true,
+      "prefix" : "sm",
+      "style" : "scss"
+    },
+    "@schematics/angular:directive" : {
+      "skipTests" : true,
+      "prefix" : "sm"
+    },
+    "@schematics/angular:guard" : {
+      "skipTests" : true
+    },
+    "@schematics/angular:module" : {
+    },
+    "@schematics/angular:pipe" : {
+      "skipTests" : true
+    },
+    "@schematics/angular:service" : {
+      "skipTests" : true
+    }
+  },
+  "cli" : {
+    "analytics" : false
+  }
+}

@@ -1,0 +1,54 @@
+<div class="mx-auto" style="max-width: 465px;">
+  <h1 class="card-title mt-3 font-weight-bold mb-4">Welcome Back!</h1>
+
+  <form [formGroup]="formGroup"
+        #form="ngForm"
+        (submit)="form.valid && submit()">
+    <fieldset [disabled]="isSubmitting">
+      <div>
+        <div class="form-group">
+          <label for="emailAddress">Email Address</label>
+          <div class="input-group">
+            <input class="form-control is-email"
+                   type="email"
+                   id="emailAddress"
+                   placeholder="Email Address"
+                   formControlName="emailAddress">
+          </div>
+        </div>
+        <sm-validation class="mb-2" controlName="emailAddress" [form]="form" [formGroup]="formGroup"></sm-validation>
+      </div>
+      <div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <input class="form-control"
+                   id="password"
+                   placeholder="Password"
+                   type="password"
+                   formControlName="password">
+          </div>
+        </div>
+        <sm-validation class="mb-2" controlName="password" [form]="form" [formGroup]="formGroup"></sm-validation>
+      </div>
+      <sm-checkbox-control formControlName="rememberMe"
+                           labelText="Remember me"
+                           inputId="rememberMe"
+                           [paddedBackground]="true"
+                           [rightMode]="true">
+      </sm-checkbox-control>
+
+      <button class="btn btn-primary btn-block rounded-0 rounded-bottom py-3 mt-2"
+              type="submit">
+        <ng-container *ngIf="!isSubmitting; else submittingLabel">
+          Sign In
+        </ng-container>
+        <ng-template #submittingLabel>
+          <span class="fa fa-spin fa-spinner"></span> &nbsp;
+          Signing in...
+        </ng-template>
+      </button>
+
+    </fieldset>
+  </form>
+</div>

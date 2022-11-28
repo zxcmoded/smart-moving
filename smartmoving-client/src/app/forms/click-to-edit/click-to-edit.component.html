@@ -1,0 +1,44 @@
+<div class="click-to-edit-wrapper" [ngClass]="{'w-100': !displayMode && type === 'textarea'}">
+  <div (click)="switchToEditMode()"
+       [class.editable]="this.allowEditing && !control.disabled"
+       [ngClass]="(this.allowEditing && !control.disabled) ? textColorClass : ''"
+       *ngIf="displayMode">
+    <ng-content></ng-content>
+  </div>
+  <textarea *ngIf="!displayMode && type === 'textarea'"
+            class="form-control mb-3"
+            rows="3"
+            smAutoFocus
+            [formControl]="control"
+            (keydown.enter)="persistChanges();"
+            (keydown.esc)="cancel();">
+  </textarea>
+  <input smAutoFocus
+         *ngIf="!displayMode && type === 'text'"
+         [formControl]="control"
+         [class.invalid]="this.invalid"
+         [attr.size]="control?.value?.toString()?.length || 2"
+         type="text"
+         (keydown.enter)="persistChanges();"
+         (keydown.esc)="cancel();">
+  <input smAutoFocus
+         *ngIf="!displayMode && type === 'number'"
+         [formControl]="control"
+         type="text"
+         [class.invalid]="this.invalid"
+         [style.width.ch]="(control?.value?.toString()?.length || 1) + 1"
+         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')"
+         (keyup.enter)="persistChanges()"
+         (keyup.esc)="cancel()">
+  <input smAutoFocus
+         *ngIf="!displayMode && type === 'integer'"
+         [formControl]="control"
+         type="number"
+         min="0"
+         inputmode="numeric"
+         [class.invalid]="this.invalid"
+         [style.width.ch]="(control?.value?.toString()?.length || 1) + 1"
+         oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+         (keyup.enter)="persistChanges()"
+         (keyup.esc)="cancel()">
+</div>

@@ -1,0 +1,52 @@
+<div class="align-items-center d-flex text-primary assign-to"
+     (smClickOutside)="clear(); popover.close()"
+     #popover="ngbPopover"
+     placement="bottom-left"
+     [ngbPopover]="popoverContent"
+     popoverClass="popover-standard"
+     (shown)="focusInput()">
+  <ng-content select="[dropdown-heading]"></ng-content>
+</div>
+
+<ng-template #popoverContent>
+
+  <div class="p-2" smStopClickPropagation>
+    <div class="form-group mb-0">
+      <div class="input-group">
+        <input smNoAutoComplete type="text" class="form-control form-control-narrow" placeholder="Search" [formControl]="searchControl" name="searchDropdownInputEl" autofocus>
+        <div class="input-group-append input-group-clear">
+          <span class="input-group-text input-group-text-narrow">
+            <span class="icon-close sm-icon-smaller text-primary cursor-pointer" *ngIf="searchControl.value; else searchIcon" (click)="clear()"></span>
+            <ng-template #searchIcon>
+              <span class="icon-search sm-icon-large"></span>
+            </ng-template>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="separator"></div>
+
+  <div smStopClickPropagation class="bg-white d-flex flex-wrap popover-container assign-to-popover">
+    <em class="p-2 text-grey" *ngIf="!results.length">
+      <ng-container *ngIf="searchControl.pristine; else minimumSearch">
+        Type to search
+      </ng-container>
+
+      <ng-template #minimumSearch>
+        <ng-container *ngIf="!searchResults; else noCustomerFound">
+          3 letters minimum...
+        </ng-container>
+      </ng-template>
+
+      <ng-template #noCustomerFound>
+        {{ noResultsMessage }}
+      </ng-template>
+    </em>
+
+    <div [ngClass]="resultWrapperClass" *ngFor="let result of results" (click)="makeSelection(result); popover.close();">
+      <ng-container *ngTemplateOutlet="parentTemplate; context: { $implicit: result }"></ng-container>
+    </div>
+  </div>
+</ng-template>

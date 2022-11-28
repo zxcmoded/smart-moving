@@ -1,0 +1,92 @@
+﻿// Legacy control.  Will be removed, eventually.
+.form-toggle {
+  position: relative;
+  min-width: 50px;
+  height: 25px;
+  .form-toggle-input {
+    display: none;
+    &:checked {
+      ~ label {
+        &:before {
+          background: $success;
+        }
+        &:after {
+          right: -48px;
+        }
+      }
+    }
+    &:disabled {
+      ~ label {
+        &:before {
+          opacity: .6;
+        }
+      }
+      &:checked {
+        ~ label {
+          &:before {
+            opacity: .4;
+          }
+        }
+      }
+    }
+  }
+  &.form-toggle-small {
+    transform: scale(0.7);
+  }
+  .form-toggle-label {
+    position: relative;
+    height: 25px;
+    width: auto;
+    margin: 0 0 0.5rem 0;
+    display: inline-block;
+    &:before {
+      position: absolute;
+      content: '';
+      background: $gray-200;
+      width: 50px;
+      height: 25px;
+      border-radius: 20px;
+      transition: all 300ms ease-out;
+      cursor: pointer;
+    }
+    &:after {
+      position: absolute;
+      content: '';
+      background: $white-600;
+      height: 21px;
+      width: 21px;
+      border-radius: 50%;
+      right: -24px;
+      top: 2px;
+      transition: all 300ms ease-out;
+      cursor: pointer;
+    }
+  }
+  &.form-toggle-small {
+    .form-toggle-label {
+      &:before {
+        width: 40px;
+        height: 18px;
+        border-radius: 18px;
+      }
+      &:after {
+        position: absolute;
+        content: '';
+        background: $white-600;
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        right: -17px;
+      }
+    }
+    .form-toggle-input {
+      &:checked {
+        ~ label {
+          &:after {
+            right: -37px;
+          }
+        }
+      }
+    }
+  }
+}

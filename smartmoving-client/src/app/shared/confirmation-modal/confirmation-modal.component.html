@@ -1,0 +1,23 @@
+<sm-modal-template
+  [title]="params.title"
+  [primaryButtonText]="params.confirmationButtonText"
+  (primaryAction)="confirm()"
+  [primaryButtonClass]="params.confirmationButtonCssClass"
+  [primaryButtonDisableState]="params.confirmationButtonDisabled()"
+  [showSecondaryButton]="params.showSecondaryButton"
+  [secondaryButtonText]="params.secondaryButtonText"
+  [isBusyState]="isWorking"
+  [modalAlertLevel]="params.modalAlertLevel"
+  (secondaryAction)="cancel()">
+<ng-container modalBody>
+  <ng-container *ngIf="params.bodyTemplate">
+    <ng-container *ngTemplateOutlet="params.bodyTemplate; context: params.bodyTemplateContext"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="!params.bodyTemplate && params.messageIsHtml">
+    <div [innerHTML]="params.message | safeHtml"></div>
+  </ng-container>
+  <ng-container *ngIf="!params.bodyTemplate && !params.messageIsHtml">
+    {{params.message}}
+  </ng-container>
+</ng-container>
+</sm-modal-template>

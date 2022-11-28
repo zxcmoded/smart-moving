@@ -1,0 +1,43 @@
+<div class="contact">
+  <div class="media align-items-center customer-info-line-1 mr-auto">
+    <div class="position-relative">
+      <div class="profile-picture mr-3 ml-0">
+        {{ contact.name | initials }}
+      </div>
+    </div>
+    <div class="media-body">
+      <div class="d-flex align-items-center mb-1">
+        <h3 class="mt-0 font-weight-bold m-0 mr-auto">
+          {{ contact.name }}
+          <span (click)="editRequested.emit()"
+                class="cursor-pointer icon-edit ml-2 text-primary">
+          </span>
+        </h3>
+      </div>
+      <div class="text-dark">
+        <ng-container *ngIf="contact.phoneNumber; else noPhoneNumber">
+          <a class="text-primary no-underline"
+              href="tel:{{contact.phoneNumber | digitsOnly}}">{{contact.phoneNumber | phoneNumber}}</a>
+        </ng-container>
+        <ng-template #noPhoneNumber>
+          --
+        </ng-template>
+        <ng-container *ngIf="contact.phoneType"> ({{ contact.phoneType }})</ng-container>
+      </div>
+      <div class="text-dark" *ngIf="contact?.secondaryPhoneNumbers?.length">
+        <a class="text-primary no-underline"
+          href="tel:{{contact.secondaryPhoneNumbers[0].phoneNumber | digitsOnly}}">
+          {{contact.secondaryPhoneNumbers[0].phoneNumber | phoneNumber}}
+        </a>
+        ({{contact.secondaryPhoneNumbers[0].phoneType}})
+        <span class="text-black-50 small" *ngIf="contact.secondaryPhoneNumbers.length > 1">
+          +{{contact.secondaryPhoneNumbers.length - 1}} more
+        </span>
+      </div>
+      <div class="text-dark">
+        {{ contact.emailAddress || "--" }}
+      </div>
+    </div>
+    <span (click)="deleteRequested.emit()" class="icon-trash cursor-pointer"></span>
+  </div>
+</div>

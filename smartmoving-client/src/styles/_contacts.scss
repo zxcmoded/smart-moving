@@ -1,0 +1,55 @@
+@import './variables';
+
+.contact {
+
+  .media {
+    h2 {
+      font-size: 16px;
+    }
+    .text-dark {
+      color: $gray-500;
+      font-size: 14px;
+    }
+    .text-danger {
+      font-size: 14px;
+    }
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: $primary;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white-600;
+    font-size: 32px;
+  }
+
+  .profile-picture-secondary {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $success-500;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white-600;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .small {
+    font-weight: 400;
+    font-size: 80% !important;
+    letter-spacing: inherit;
+    text-transform: inherit;
+  }
+
+}

@@ -1,0 +1,11 @@
+@import '~styles/variables';
+
+.card-footer {
+  background: transparent !important;
+}
+.card-header {
+  border-color: $subheader-border-color;
+  background: transparent !important;
+  color: $gray-500;
+  font-size: 14px;
+}

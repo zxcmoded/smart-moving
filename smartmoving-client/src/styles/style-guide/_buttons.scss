@@ -1,0 +1,97 @@
+@import 'color-variables';
+
+button:focus {
+  // Fix button outlines in Chrome, #3480
+  outline: none;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 0.57rem 0.65rem;
+  border-radius: 3px;
+}
+
+@mixin btnBoxShadow($color) {
+  -webkit-box-shadow: inset 0 0 0 3rem $color;
+  -moz-box-shadow: inset 0 0 0 3rem $color;
+  box-shadow: inset 0 0 0 3rem $color;
+}
+
+.btn-primary {
+  @include btnBoxShadow($primary)
+}
+
+.btn-success {
+  @include btnBoxShadow($success)
+}
+
+.btn-warning {
+  @include btnBoxShadow($warning)
+}
+
+.btn-danger {
+  @include btnBoxShadow($danger)
+}
+
+.btn-wide {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.btn-icon-text {
+  display: inline-flex;
+  align-items: center;
+
+  [class*='icon-'],
+  [class*='fa-'] {
+    margin-right: 0.5rem;
+  }
+}
+
+.btn-cancel {
+  color: $primary;
+
+  &:disabled {
+    color: $gray-400;
+    opacity: 1 !important;
+  }
+
+  &:hover:enabled {
+    color: $primary-500 !important;
+  }
+}
+
+.btn-link {
+  color: $primary;
+  text-decoration: none;
+
+  &:not(disabled) {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:hover {
+    color: $primary-500;
+  }
+}
+
+.btn-outline-primary {
+  &:hover {
+    background: transparentize($primary, 0.9);
+    color: $primary;
+  }
+}
+
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-right-color: $gray-200;
+  z-index: 3;
+}
+
+.btn-outline-grey {
+  color: theme-color('grey');
+  border-color: theme-color('grey');
+}

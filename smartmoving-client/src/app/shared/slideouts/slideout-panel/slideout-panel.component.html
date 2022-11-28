@@ -1,0 +1,16 @@
+<div class="offcanvas-collapse panel-1" id="panel-1">
+  <div class="align-items-sm-center bg-primary d-flex justify-content-between px-4 py-3 row">
+    <div class="ml-4 flex-grow-2 fix-icon-alignment title-wrapper">
+      <i *ngIf="showBackButton" class="icon-arrow-left btn-header-popout mr-2 sm-text-white-600 cursor-pointer" (click)="back()"></i>
+      <sm-truncate-text class="sm-text-white-600 sm-font-size-large" [text]="title"></sm-truncate-text>
+    </div>
+    <div>
+      <i *ngIf="popoutOptions" class="icon-popout btn-header-popout mr-3 sm-text-white-600 cursor-pointer" (click)="popout()"></i>
+      <i *ngIf="showCloseButton" (click)="close()" class="icon-close sm-icon-small close-panel"></i>
+    </div>
+  </div>
+
+  <div smChildInputAutoFocus [setFocusEvent]="focusEventEmitter" [class.container]="!noPadding" class="has-footer" [ngClass]="additionalContainerClasses">
+    <ng-template cdkPortalOutlet></ng-template>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <Content Include="appsettings.json">
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="appsettings.*.json">
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0"/>
+        <PackageReference Include="NUnit" Version="3.13.3"/>
+        <PackageReference Include="NUnit3TestAdapter" Version="4.2.1"/>
+        <PackageReference Include="SpecsFor.StructureMap" Version="7.1.0"/>
+        <PackageReference Include="StructureMap" Version="4.7.1"/>
+        <PackageReference Include="System.ServiceModel.Duplex" Version="4.9.0"/>
+        <PackageReference Include="System.ServiceModel.Http" Version="4.9.0"/>
+        <PackageReference Include="System.ServiceModel.NetTcp" Version="4.9.0"/>
+        <PackageReference Include="System.ServiceModel.Security" Version="4.9.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SmartMoving.Api\SmartMoving.Api.csproj"/>
+        <PackageReference Include="RandomNameGeneratorLibrary" Version="1.2.2"/>
+        <ProjectReference Include="..\SmartMoving.Data\SmartMoving.Data.csproj"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+<sm-loading-overlay *ngIf="isLoading"></sm-loading-overlay>
+<div class="offcanvas-content mt-3" *ngIf="!isLoading">
+
+  <p *ngIf="!contacts || !contacts.length">
+    There are no additional contacts.
+  </p>
+
+  <sm-secondary-contact *ngFor="let contact of contacts"
+                        [contact]="contact"
+                        (editRequested)="addEditContact(contact)"
+                        (deleteRequested)="deleteContact(contact)">
+  </sm-secondary-contact>
+
+  <div class="d-flex fixed-bottom bg-secondary p-3 offcanvas-footer">
+    <button type="button" (click)="close()" class="btn btn-cancel">Close</button>
+    <button type="button" (click)="addEditContact(null)" class="btn btn-primary">Add New</button>
+  </div>
+
+</div>

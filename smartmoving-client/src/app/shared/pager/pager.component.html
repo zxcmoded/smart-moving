@@ -1,0 +1,21 @@
+<nav aria-label="Pager" *ngIf="alwaysShow || (currentPage?.totalPages && currentPage.totalPages > 1)">
+  <ul class="pagination cursor-pointer">
+    <li class="page-item" [class.disabled]="currentPage?.pageNumber === 1">
+      <a class="page-link" (click)="goToPreviousPage()">
+        <span aria-hidden="true">&laquo;</span>
+        Previous
+      </a>
+    </li>
+    <li *ngFor="let pageNumber of enumeratePages()"
+        class="page-item" [class.active]="pageNumber === currentPage?.pageNumber">
+      <a class="page-link"
+         (click)="goToPage(pageNumber)">{{pageNumber}}</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage?.pageNumber === currentPage?.totalPages">
+      <a class="page-link" (click)="goToNextPage()">
+        Next
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

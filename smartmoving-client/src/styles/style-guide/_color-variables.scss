@@ -1,0 +1,112 @@
+﻿$gray-100: rgba(0, 0, 0, 0.05);
+$gray-200: rgba(0, 0, 0, 0.1);
+$gray-300: rgba(0, 0, 0, 0.2);
+$gray-400: rgba(0, 0, 0, 0.4);
+$gray-500: rgba(0, 0, 0, 0.64);
+$gray-600: rgba(0, 0, 0, 0.87);
+
+$gray-filled-100: #F2F2F2;
+$gray-filled-200: #E6E6E6;
+$gray-filled-300: #CCCCCC;
+$gray-filled-400: #999999;
+$gray-filled-500: #5C5C5C;
+$gray-filled-600: #212121;
+
+$white-100: rgba(255, 255, 255, 0.05);
+$white-200: rgba(255, 255, 255, 0.1);
+$white-300: rgba(255, 255, 255, 0.2);
+$white-400: rgba(255, 255, 255, 0.5);
+$white-500: rgba(255, 255, 255, 0.7);
+$white-600: #FFFFFF;
+
+$primary-100: #E1EFFF;
+$primary-200: #B3D5FF;
+$primary-300: #5096EB;
+$primary-400: #306EBA;
+$primary-500: #0E4180;
+$primary-600: #00234F;
+$primary: $primary-400;
+
+$warning-000: #FFF0E8;
+$warning-100: #FFD7C0;
+$warning-200: #FFB084;
+$warning-300: #FF9C64;
+$warning-400: #E37F46;
+$warning-500: #C75C1F;
+$warning: $warning-400;
+
+$success-000: #EEFFF2;
+$success-100: #CEFFD8;
+$success-200: #9CE8AC;
+$success-300: #7EDC92;
+$success-400: #65C87A;
+$success-500: #22913A;
+$success: $success-400;
+
+$danger: #e94b35;
+
+// TODO (Future story): Will be replaced by additional theme colors.
+$red: #e94b35;
+$purple: #9b59b6;
+
+// Other theme colors
+$blue-gray: #f6f8fa;
+
+// Data vis colors
+$data-viz-001: #3747CE;
+$data-viz-002: #24B1FD;
+$data-viz-003: #7F2EAB;
+$data-viz-004: #FF71A3;
+$data-viz-005: #74D5C8;
+
+$sm-theme-colors: (
+        gray-100: $gray-100,
+        gray-200: $gray-200,
+        gray-300: $gray-300,
+        gray-400: $gray-400,
+        gray-500: $gray-500,
+        gray-600: $gray-600,
+        gray-filled-100: $gray-filled-100,
+        gray-filled-200: $gray-filled-200,
+        gray-filled-300: $gray-filled-300,
+        gray-filled-400: $gray-filled-400,
+        gray-filled-500: $gray-filled-500,
+        gray-filled-600: $gray-filled-600,
+        white-100: $white-100,
+        white-200: $white-200,
+        white-300: $white-300,
+        white-400: $white-400,
+        white-500: $white-500,
+        white-600: $white-600,
+        primary-100: $primary-100,
+        primary-200: $primary-200,
+        primary-300: $primary-300,
+        primary-400: $primary-400,
+        primary-500: $primary-500,
+        primary-600: $primary-600,
+        primary: $primary,
+        warning-000: $warning-000,
+        warning-100: $warning-100,
+        warning-200: $warning-200,
+        warning-300: $warning-300,
+        warning-400: $warning-400,
+        warning-500: $warning-500,
+        warning: $warning,
+        success-000: $success-000,
+        success-100: $success-100,
+        success-200: $success-200,
+        success-300: $success-300,
+        success-400: $success-400,
+        success-500: $success-500,
+        success: $success,
+
+        "red": $red,
+        "purple": $purple,
+        "blue-gray": $blue-gray,
+        
+        data-viz-001: $data-viz-001,
+        data-viz-002: $data-viz-002,
+        data-viz-003: $data-viz-003,
+        data-viz-004: $data-viz-004,
+        data-viz-005: $data-viz-005
+)

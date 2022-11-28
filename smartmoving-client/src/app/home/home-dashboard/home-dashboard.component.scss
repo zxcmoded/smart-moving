@@ -1,0 +1,53 @@
+@import '~styles/variables';
+
+@mixin media-breakpoint-dashboard-medium {
+  @media screen and (max-width: 1415px) {
+    @content
+  }
+};
+
+.dashboard-activity {
+  grid-area: activity;
+}
+.dashboard-open-items {
+  grid-area: open-items;
+}
+.dashboard-revenue {
+  grid-area: revenue;
+}
+.dashboard-sales-leaders {
+  grid-area: sales-leaders;
+}
+.dashboard-top-referral {
+  grid-area: top-referral;
+}
+
+.dashboard {
+  margin-bottom: -80px;
+  padding-bottom: 0 !important;
+  min-height: calc(100vh - 158px);
+  @include media-breakpoint-dashboard-medium {
+    padding-left: 2rem !important;
+    margin-right: -18px !important;
+  }
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-rows: auto;
+  grid-column-gap: 1.3rem;
+  margin-right: 2.6rem;
+  grid-row-gap: 1.3rem;
+  grid-template-areas: 'activity open-items sales-leaders' 'revenue revenue top-referral';
+  @include media-breakpoint-dashboard-medium {
+    grid-template-columns: 50% 50%;
+    margin-right: 2.6rem;
+    grid-template-areas: 'activity open-items' 'revenue revenue' 'sales-leaders top-referral';
+  }
+}
+
+.top-stats {
+  @include media-breakpoint-dashboard-medium {
+    margin-right: 1.25rem;
+  }
+}

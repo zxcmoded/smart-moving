@@ -1,0 +1,24 @@
+<li (smClickOutside)="this.isOpen && toggle()" class="nav-item nav-link-popover profile" [class.open]="isOpen">
+  <a class="nav-link" href="#" (click)="toggle(); false">{{initials}}</a>
+  <div class="bg-white box-shadow-low popover-container profile-popover rounded">
+    <header class="align-items-center bg-primary d-flex">
+      <div class="align-items-center media">
+        <div class="profile-picture align-self-center mr-3">
+          {{initials}}
+        </div>
+        <div class="media-body">
+          <h5 class="mb-0 text-white font-weight-bolder">{{displayName}}</h5>
+          <span class="mb-0 text-white small" title="{{emailAddress}}">{{emailAddress | truncate:28}}</span>
+        </div>
+      </div>
+    </header>
+    <ul class="nav d-flex flex-column" (click)="toggle(); false">
+
+      <li class="d-flex nav-item nav-item-logout px-3 py-3">
+        <a routerLink="/logout" class="nav-link nav-link-logout p-0">
+          <div class="nav-link-label"><span class="icon-sign-out mr-2"></span>Log Out</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</li>

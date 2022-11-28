@@ -1,0 +1,47 @@
+﻿@import 'color-variables';
+@import 'font-size-variables';
+
+.sm-text-primary-hover {
+  $ease: all 200ms ease;
+  cursor: pointer;
+  transition: $ease;
+  &:hover {
+    transition: $ease;
+    color: $primary !important;
+  }
+}
+
+.hr-thick {
+  height: 0.1875rem;
+  border: none;
+  color: rgba(17, 17, 17, .1);
+  background-color: rgba(17, 17, 17, .1);
+}
+
+// Makes a nifty little progress bar that can be embedded
+.simple-percent {
+  display: flex;
+  align-items: center;
+
+  .simple-percent-wrapper {
+    flex: 1 0 75%;
+    height: 0.75rem;
+    background-color: $blue-gray;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  
+  .simple-percent-bar {
+    display: block;
+    height: 100%;
+    background-color: $primary;
+  }
+
+  .simple-percent-number {
+    flex: 1 0 25%;
+    color: $gray-500;
+    font-size: $sm-font-size-small;
+    font-weight: 500;
+    text-align: right;
+  }
+}

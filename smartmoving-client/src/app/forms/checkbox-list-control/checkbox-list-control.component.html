@@ -1,0 +1,35 @@
+<div class="item"
+     [disabled]="disabled"
+     *ngFor="let item of items; let i = index; trackBy: trackById"
+     (click)="toggleItem(item)"
+     [class.py-1]="paddedBackground">
+  <div class="form-group form-check w-100"
+       [class.form-check-right]="rightMode"
+       [class.form-check-padded]="paddedBackground"
+       [class.form-check-align-with-inputs]="alignWithInputs"
+       [class.mb-0]="noMargin">
+    <div class="input-group"
+         [class.sm-bg-gray-100]="paddedBackground"
+         [class.border-0]="!paddedBackground">
+      <label class="form-check-label"
+             [attr.for]="inputId + i"
+             *ngIf="rightMode"
+             smStopClickPropagation>
+        {{item[bindLabel]}}
+      </label>
+      <input type="checkbox"
+             class="form-check-input"
+             [checked]="item.isSelected"
+             [attr.name]="item[bindLabel]"
+             [attr.id]="inputId + i"
+             [disabled]="disabled"
+             [attr.data-test-id]="dataTestIdPrefix + i">
+      <label class="form-check-label"
+             [attr.for]="inputId + i"
+             *ngIf="!rightMode"
+             smStopClickPropagation>
+        {{item[bindLabel]}}
+      </label>
+    </div>
+  </div>
+</div>

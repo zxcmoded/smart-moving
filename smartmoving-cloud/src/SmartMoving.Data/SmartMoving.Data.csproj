@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.7"/>
+        <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="6.14.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SmartMoving.Core\SmartMoving.Core.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="*\**\*.sql"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Indexes"/>
+        <Folder Include="Migrations"/>
+        <Folder Include="Views"/>
+    </ItemGroup>
+
+</Project>

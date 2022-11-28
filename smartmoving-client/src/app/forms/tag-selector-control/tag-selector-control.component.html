@@ -1,0 +1,17 @@
+﻿<div class="form-group form-check form-check-padded"
+     *ngFor="let tag of tags; let i = index"
+     (click)="tag.selected = !tag.selected">
+  <div class="input-group sm-bg-gray-100 b-0">
+    <input type="checkbox"
+           class="form-check-input"
+           (change)="changed()"
+           [(ngModel)]="tag.selected"
+           id="tag_{{i}}"
+           smStopClickPropagation>
+    <label class="form-check-label"
+           for="tag_{{i}}"
+           smStopClickPropagation>
+      {{tag.name}}
+    </label>
+  </div>
+</div>

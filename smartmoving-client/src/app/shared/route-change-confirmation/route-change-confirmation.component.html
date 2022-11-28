@@ -1,0 +1,12 @@
+<ng-template #confirmCloseModal>
+  <sm-modal-template title="You have unsaved changes"
+                     primaryButtonText="Yes, Proceed"
+                     (primaryAction)="closeConfirmRouteChange(true)"
+                     (secondaryAction)="closeConfirmRouteChange(false)">
+    <ng-container modalBody>
+      <p>
+        {{message}}
+      </p>
+    </ng-container>
+  </sm-modal-template>
+</ng-template>

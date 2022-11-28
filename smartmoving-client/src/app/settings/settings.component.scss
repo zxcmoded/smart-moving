@@ -1,0 +1,33 @@
+@import "~styles/variables";
+
+.settings-content {
+  :nth-child(1) {
+    width: 100%;
+  }
+
+  ::ng-deep {
+    .form {
+      label {
+        font-size: $h5-font-size;
+        color: $gray-600;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+a {
+  color: $gray-600;
+}
+
+.settings-content.w-100 {
+  max-width: calc(100vw - 300px);
+}
+
+h3 + ul {
+  margin-bottom: .25rem;
+
+  li:last-child {
+    margin-bottom: .5rem;
+  }
+}

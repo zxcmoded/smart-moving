@@ -1,0 +1,34 @@
+@import '~styles/style-guide/color-variables';
+
+:host {
+  color: $primary-400;
+}
+
+:host ::ng-deep {
+  .popover-header {
+    display: none;
+  }
+}
+
+.popover-container {
+  max-height: 410px;
+  overflow-y: auto;
+}
+
+.profile-badge {
+  color: $white-600;
+  border-radius: 2px;
+  font-size: 12px;
+  padding: 3px;
+  min-width: 28px;
+  text-align: center;
+}
+
+.item.disabled {
+  color: $gray-300;
+
+  &:hover {
+    color: $gray-300;
+    background-color: $white-600;
+  }
+}

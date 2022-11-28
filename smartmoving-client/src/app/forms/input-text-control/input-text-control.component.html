@@ -1,0 +1,157 @@
+<div class="form-group" [class.mb-0]="noMargin">
+
+  <sm-input-label [control]="this" [labelRowEndContent]="labelActionTemplateRef"></sm-input-label>
+
+  <div class="input-group" [class.input-group-sm]="useSmallControl" [style.width]="fixedWidth">
+
+    <ng-container [ngSwitch]="prependMode">
+      <ng-container *ngSwitchCase="InputAddonMode.Template">
+        <div class="input-group-prepend"
+             *ngFor="let prependTemplateInfo of prependTemplateInfoArray"
+             [class.input-group-clear]="prependTemplateInfo.backgroundIsClear">
+          <span class="input-group-text"
+                [class.input-group-text-narrow]="narrowMode">
+            <ng-template [ngTemplateOutlet]="prependTemplateInfo.ref"></ng-template>
+          </span>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="InputAddonMode.Icon">
+        <div class="input-group-prepend"
+             [class.input-group-clear]="prependBackgroundIsClear">
+          <span class="input-group-text"
+                [class.input-group-text-narrow]="narrowMode">
+            <span [class]="prependIconClass"></span>
+          </span>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="InputAddonMode.Text">
+        <div class="input-group-prepend"
+             [class.input-group-clear]="prependBackgroundIsClear">
+          <span class="input-group-text"
+                [class.input-group-text-narrow]="narrowMode">
+            {{prependText}}
+          </span>
+        </div>
+      </ng-container>
+    </ng-container>
+
+
+    <!-- We need to keep these inputs (relatively) in sync -->
+
+    <!-- WORKAROUND FOR BUG IN ANGULAR: https://github.com/angular/angular/issues/13243 -->
+    <ng-container *ngIf="inputType === 'number'; else nonNumericInput">
+      <input autocomplete="{{autocompleteValue}}"
+             type="number"
+             class="form-control"
+             [class.form-control-narrow]="narrowMode"
+             [class.text-right]="rightAlign"
+             [class.text-center]="centerAlign"
+             [formControl]="$any(ngControl?.control)"
+             name="{{finalInputName}}"
+             [attr.id]="inputId"
+             placeholder="{{placeholder}}"
+             [required]="isRequiredControl"
+             [readonly]="isReadonly"
+             [attr.maxLength]="maxLength"
+             [attr.data-test-id]="finalDataTestId"
+             (blur)="inputBlur.emit()"
+             (focus)="inputFocus.emit()"
+             #numberTextbox>
+    </ng-container>
+    <ng-template #nonNumericInput>
+      <input *ngIf="!isPhoneNumber"
+             autocomplete="{{autocompleteValue}}"
+             [type]="inputType"
+             class="form-control"
+             [class.form-control-narrow]="narrowMode"
+             [class.text-right]="rightAlign"
+             [class.text-center]="centerAlign"
+             [formControl]="$any(ngControl?.control)"
+             name="{{finalInputName}}"
+             [attr.id]="inputId"
+             placeholder="{{placeholder}}"
+             [required]="isRequiredControl"
+             [readonly]="isReadonly"
+             [attr.maxLength]="maxLength"
+             [attr.data-test-id]="finalDataTestId"
+             (blur)="inputBlur.emit()"
+             (focus)="inputFocus.emit()"
+             #inputTextbox>
+
+      <input *ngIf="isPhoneNumber"
+             autocomplete="{{autocompleteValue}}"
+             [type]="inputType"
+             class="form-control"
+             [class.form-control-narrow]="narrowMode"
+             [formControl]="$any(ngControl?.control)"
+             name="{{finalInputName}}"
+             [attr.id]="inputId"
+             placeholder="{{placeholder}}"
+             [required]="isRequiredControl"
+             [readonly]="isReadonly"
+             [attr.maxLength]="maxLength"
+             [attr.data-test-id]="finalDataTestId"
+             (blur)="inputBlur.emit()"
+             (focus)="inputFocus.emit()"
+             smFormatPhoneNumber
+             [formatOnBlur]="true"
+             #phoneInputTextbox>
+    </ng-template>
+
+    <div *ngIf="showClearButton"
+         class="enable-read-only display-none-if-read-only input-group-append"
+         [class.input-group-clear]="appendBackgroundIsClear">
+          <span class="input-group-text sm-font-size-smaller cursor-pointer"
+                [class.input-group-text-narrow]="narrowMode"
+                (click)="clear()">
+            <span class="icon-close"></span>
+          </span>
+    </div>
+
+    <div *ngIf="showUndoButton"
+         class="cursor-pointer input-group-append input-group-clear undo-append"
+         (click)="doUndo()">
+      <span class="input-group-text pl-1">
+        <span class="sm-text-primary icon-reload"
+              [placement]="['bottom', 'auto']"
+              [ngbTooltip]="getUndoMessage()">
+        </span>
+      </span>
+    </div>
+
+    <ng-container [ngSwitch]="appendMode">
+      <ng-container *ngSwitchCase="InputAddonMode.Template">
+        <div class="input-group-append"
+             *ngFor="let appendTemplateInfo of appendTemplateInfoArray"
+             [class.input-group-clear]="appendTemplateInfo.backgroundIsClear">
+          <span class="input-group-text"
+                [class.input-group-text-narrow]="narrowMode">
+            <ng-template [ngTemplateOutlet]="appendTemplateInfo.ref"></ng-template>
+          </span>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="InputAddonMode.Icon">
+        <div class="input-group-append"
+             [class.input-group-clear]="appendBackgroundIsClear">
+          <span class="input-group-text"
+                [class.input-group-text-narrow]="narrowMode">
+            <span [class]="appendIconClass"></span>
+          </span>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="InputAddonMode.Text">
+        <div class="input-group-append"
+             [class.input-group-clear]="appendBackgroundIsClear">
+          <span class="input-group-text"
+                [class.input-group-text-narrow]="narrowMode">
+            {{appendText}}
+          </span>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </div>
+
+  <sm-input-help-text [control]="this"></sm-input-help-text>
+
+</div>

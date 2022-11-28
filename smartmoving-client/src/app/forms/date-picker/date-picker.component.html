@@ -1,0 +1,63 @@
+<ng-container *ngIf="!popoverMode">
+  <div class="form-group"
+       [class.mb-0]="noMargin">
+
+    <sm-input-label [control]="this"></sm-input-label>
+
+    <div class="input-group">
+
+      <input type="text"
+             (click)="picker.open(); pickerOpened();"
+             [matDatepicker]="$any(picker)"
+             [max]="maxDateValue"
+             [min]="minDateValue"
+             class="form-control"
+             [formControl]="formControl"
+             [name]="finalInputName"
+             [id]="inputId"
+             placeholder="{{placeholder}}"
+             [required]="isRequiredControl"
+             [readonly]="isReadonly"
+             [attr.data-test-id]="finalDataTestId">
+      <mat-datepicker [startAt]="startAtDateValue" #picker></mat-datepicker>
+      <div class="input-group-append input-group-clear cursor-pointer"
+           (click)="!allowClearing && picker.open()">
+            <span class="input-group-text">
+              <i class="fa fa-times-circle text-primary font-size-larger pr-2"
+                 *ngIf="allowClearing"
+                 (click)="clear()"></i>
+              <i class="icon-calendar text-primary" *ngIf="showIcon" (click)="picker.open()"></i>
+            </span>
+      </div>
+
+    </div>
+
+    <sm-input-help-text [control]="this"></sm-input-help-text>
+
+  </div>
+</ng-container>
+<ng-container *ngIf="popoverMode">
+  <div class="cursor-pointer text-primary d-flex align-items-center"
+       #datePopover="ngbPopover"
+       autoClose="outside"
+       [ngbPopover]="startCalendarTemplate"
+       [container]="popoverContainer"
+       [placement]="placement">
+    <ng-template *ngIf="popoverTemplate" [ngTemplateOutlet]="popoverTemplate"></ng-template>
+    <ng-container *ngIf="!popoverTemplate">
+      <span *ngIf="formControl.value">{{ (formControl.value | date:'M/d/yyyy')}}</span>
+      <span *ngIf="!formControl.value">{{ placeholder }}</span>
+      <span class="icon-calendar ml-1"></span>
+    </ng-container>
+  </div>
+  <ng-template #startCalendarTemplate>
+    <div class="mat-datepicker-content" [class.mat-datepicker-content-with-actions]="allowClearing && formControl.value">
+      <mat-calendar [minDate]="minDateValue" [maxDate]="maxDateValue"
+                    (selectedChange)="formControl.setValue($event); datePopover.close()">
+      </mat-calendar>
+      <div class="d-flex justify-content-center" *ngIf="allowClearing && formControl.value">
+        <button class="btn btn btn-secondary btn-sm" (click)="clear(); datePopover.close()">Clear</button>  
+      </div>
+    </div>
+  </ng-template>
+</ng-container>

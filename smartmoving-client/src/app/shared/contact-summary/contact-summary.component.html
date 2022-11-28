@@ -1,0 +1,131 @@
+<div class="contact">
+  <div class="d-flex align-items-center customer-info-line-1 mr-auto"
+      [class.flex-column]="badgeDisplay === 'top'"
+      [class.media]="badgeDisplay === 'left'">
+    <div class="position-relative"
+         [class.mb-3]="badgeDisplay === 'top'">
+      <div class="profile-picture mr-3 ml-0">
+        {{ primaryContact.name | initials }}
+      </div>
+      <div
+        *ngIf="opportunityId && secondaryContacts?.length"
+        [ngbPopover]="contactMatchTmpl"
+        triggers="manual"
+        [autoClose]="false"
+        placement="bottom-left"
+        #contactMatchPopover="ngbPopover"
+        (click)="viewContacts()"
+        class="profile-picture-secondary mr-3 ml-0">
+        <span class="fa fa-group" *ngIf="secondaryContacts.length > 1"></span>
+        <ng-container *ngIf="secondaryContacts.length === 1">{{ secondaryContacts[0].name | initials }}</ng-container>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column max-width-100 overflow-hidden"
+        [class.align-items-center]="badgeDisplay === 'top'"
+        [class.media-body]="badgeDisplay === 'left'">
+      <div class="d-flex align-items-center mb-1 max-width-100" [class.justify-content-center]="badgeDisplay === 'top'">
+        <h3 container="body"
+          [ngbTooltip]="primaryContact?.name"
+          [disableTooltip]="!spaceIsNeeded(contactH3)"
+          class="d-flex pr-1 max-width-100 mt-0 font-weight-bold m-0 mr-auto" *ngIf="badgeDisplay === 'left'">
+          <span #contactH3 data-test-id="primaryContactName" class="text-truncate">
+            {{ primaryContact.name }}
+          </span>
+          <span *ngIf="!hideEdit"
+                (click)="editPrimaryContact()"
+                class="cursor-pointer icon-edit ml-2 text-primary">
+          </span>
+        </h3>
+        <h2 container="body"
+          [ngbTooltip]="primaryContact?.name"
+          [disableTooltip]="!spaceIsNeeded(contactH2)"
+          class="d-flex px-1 max-width-100 mt-0 font-weight-bold m-0" *ngIf="badgeDisplay === 'top'">
+          <span #contactH2 data-test-id="primaryContactName" class="text-truncate">
+            {{ primaryContact.name }}
+          </span>
+          <span *ngIf="!hideEdit"
+                (click)="editPrimaryContact()"
+                class="cursor-pointer icon-edit ml-2 text-primary">
+          </span>
+        </h2>
+      </div>
+      <span class="text-dark" [ngClass]="{'font-weight-bold mb-1': badgeDisplay === 'top'}">
+        <ng-container *ngIf="primaryContact.phoneNumber; else noPhoneNumber">
+          <a class="text-primary no-underline" data-test-id="primaryContactPhoneNumber"
+              href="tel:{{primaryContact.phoneNumber | digitsOnly}}">{{primaryContact.phoneNumber | phoneNumber}}</a>
+        </ng-container>
+        <ng-template #noPhoneNumber>
+          --
+        </ng-template>
+        <ng-container *ngIf="primaryContact.phoneType"> 
+          <span data-test-id="primaryContactPhoneType"> ({{ primaryContact.phoneType }})</span>
+        </ng-container>
+      </span>
+      <span class="text-dark" [ngClass]="{'font-weight-bold mb-1': badgeDisplay === 'top'}" *ngIf="primaryContact?.secondaryPhoneNumbers?.length">
+        <a class="text-primary no-underline" data-test-id="primaryContactSecondaryPhoneNumber"
+          href="tel:{{primaryContact.secondaryPhoneNumbers[0].phoneNumber | digitsOnly}}">
+          {{primaryContact.secondaryPhoneNumbers[0].phoneNumber | phoneNumber}}
+        </a>
+        <span data-test-id="primaryContactSecondaryPhoneType"> ({{primaryContact.secondaryPhoneNumbers[0].phoneType}})</span>
+        <span class="text-black-50 small" data-test-id="primaryContactPlusMore" *ngIf="primaryContact.secondaryPhoneNumbers.length > 1">
+          +{{primaryContact.secondaryPhoneNumbers.length - 1}} more
+        </span>
+      </span>
+      <span class="text-dark" [ngClass]="{'font-weight-bold mb-1': badgeDisplay === 'top'}">
+        <a class="text-primary no-underline"
+           data-test-id="primaryContactEmailAddress"
+          *ngIf="primaryContact.emailAddress"
+          href="mailto:{{primaryContact.emailAddress}}">
+          {{primaryContact.emailAddress}}
+        </a>
+        <ng-container *ngIf="!primaryContact.emailAddress">--</ng-container>
+      </span>
+    </div>
+
+  </div>
+  <div *ngIf="opportunityId && !hideEdit">
+    <button class="small btn btn-sm btn-text text-primary" type="button" (click)="addContact()">
+      <span class="icon-plus-circle"></span>
+      Add Contact
+    </button>
+  </div>
+</div>
+
+
+<ng-template #contactMatchTmpl>
+  <div class="p-4" (smClickOutside)="contactMatchPopover.close()" style="min-width: 300px;">
+    <div class="secondary-contact-popover-body">
+      <div class="d-flex align-items-center mb-1">
+        <h3 class="mt-0 font-weight-bold m-0 mr-auto text-primary cursor-pointer"
+            (click)="contactMatchPopover.close(); viewContacts()">
+          {{ contactMatch.name }}
+        </h3>
+        <span class="text-grey cursor-pointer icon-close sm-icon-smaller" (click)="contactMatchPopover.close()"></span>
+      </div>
+      <div class="text-dark">
+        <ng-container *ngIf="contactMatch.phoneNumber; else noPhoneNumber">
+          <a class="text-primary no-underline"
+              href="tel:{{contactMatch.phoneNumber | digitsOnly}}">{{contactMatch.phoneNumber | phoneNumber}}</a>
+        </ng-container>
+        <ng-template #noPhoneNumber>
+          Phone: --
+        </ng-template>
+        <ng-container *ngIf="contactMatch.phoneType"> ({{ contactMatch.phoneType }})</ng-container>
+      </div>
+      <div class="text-dark" *ngIf="contactMatch?.secondaryPhoneNumbers?.length">
+        <a class="text-primary no-underline"
+          href="tel:{{contactMatch.secondaryPhoneNumbers[0].phoneNumber | digitsOnly}}">
+          {{contactMatch.secondaryPhoneNumbers[0].phoneNumber | phoneNumber}}
+        </a>
+        ({{contactMatch.secondaryPhoneNumbers[0].phoneType}})
+        <span class="text-black-50 small" *ngIf="contactMatch.secondaryPhoneNumbers.length > 1">
+          +{{contactMatch.secondaryPhoneNumbers.length - 1}} more
+        </span>
+      </div>
+      <div class="text-dark">
+        {{ contactMatch.emailAddress || "Email: --" }}
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,135 @@
+@use '@angular/cdk' as cdk;
+@import '@angular/cdk/overlay-prebuilt.css';
+
+@include cdk.overlay;
+
+$container-padding: 1.5625rem;
+
+.offcanvas-collapse {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: $white-600;
+  box-shadow: -1px 0 5px rgba(0, 0, 0, 0.4);
+  backface-visibility: hidden;
+  z-index: $zindex-slideout;
+  overflow-x: hidden;
+
+  hr.slideout-list-separator {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .offcanvas-content {
+    max-height: calc(100% - 135px);
+    padding: 0 0 20px 0;
+
+    h4 {
+      font-weight: 400 !important;
+    }
+  }
+
+  .slideout-item-full-width {
+    margin-left: -$container-padding;
+    margin-right: -$container-padding;
+  }
+}
+
+.slideout-open {
+  .select2-results {
+    font-weight: bolder;
+    font-size: 14px !important;
+  }
+
+
+}
+
+.offcanvas-footer {
+  border-top: 1px solid $subheader-border-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .btn {
+    font-weight: 500;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .btn-outline-primary {
+    background: $white-600;
+    margin-right: 15px !important;
+
+    &:hover {
+      background: transparent;
+      color: $primary;
+    }
+  }
+}
+
+.close-panel {
+  align-items: center;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 21px;
+  height: 30px;
+  justify-content: center;
+  margin-right: 0;
+  width: 30px;
+  transition: all 300ms ease-out;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.cdk-global-scrollblock {
+  overflow: hidden !important;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  &.slideout-backdrop {
+    background: transparentize($gray-600, 0.2);
+  }
+}
+
+.sidebar-form {
+  h4 {
+    font-weight: 300 !important;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .row {
+    margin-bottom: 0.5rem;
+  }
+
+  .row.fixed-bottom {
+    margin-bottom: 0;
+  }
+
+  formly-field {
+    flex: 1;
+  }
+}
+
+hr.slideout-section-separator {
+  margin-left: -$container-padding;
+  margin-right: -$container-padding;
+}
+
+// For the sidebar slideout in the opportunity module. 
+.opportunity-sidebar-slideout .card {
+  /* background: red; */
+  margin-bottom: 0.75rem;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.opportunity-sidebar-slideout.container {
+  padding: 1rem;
+}

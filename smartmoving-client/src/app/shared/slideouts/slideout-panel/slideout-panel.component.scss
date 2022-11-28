@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.close-panel {
+  margin-right: 10px;
+}
+
+.container {
+  overflow-y: auto;
+}
+
+.container.no-padding {
+  padding: 0;
+}
+
+.has-footer {
+  height: calc(100% - 135px);
+}
+
+.no-footer {
+  height: calc(100% - 62px);
+}
+
+.btn-header-popout {
+  border-radius: 50%;
+  font-size: 21px;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.title-wrapper {
+  max-width: calc(100% - 5rem);
+  
+  sm-truncate-text {
+    max-width: 100%;
+  }
+}

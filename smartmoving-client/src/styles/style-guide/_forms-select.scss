@@ -1,0 +1,315 @@
+﻿@import 'color-variables';
+@import 'forms-variables';
+
+.default-input-style {
+  border: $normal-border;
+  border-radius: $form-border-radius;
+  padding: 0.5rem 1rem;
+  color: $normal-text-color;
+  transition: $form-transition;
+}
+
+.select2-dropdown--below {
+  padding: 0;
+}
+
+.select2-container--default {
+  .select2-selection--single {
+    height: auto;
+    outline: none;
+    @extend .default-input-style;
+
+    .select2-selection__rendered {
+      padding: 0;
+    }
+
+    .select2-selection__arrow {
+      font-size: 1.4rem;
+      top: 50%;
+      right: 10px;
+      margin-top: -15px;
+      color: $normal-text-color;
+
+      b {
+        display: none;
+      }
+
+      &:before {
+        display: inline-block;
+        font-family: 'smicon';
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        content: '\e91c';
+        transition: $form-transition;
+      }
+    }
+  }
+
+  &.select2-container--open {
+    z-index: $zindex-select;
+
+    .select2-selection__arrow {
+      &:before {
+        transform: rotateZ(180deg);
+      }
+    }
+  }
+}
+
+.select2-dropdown {
+  border: $normal-border;
+  border-radius: $form-border-radius;
+  color: $gray-600;
+  transition: none;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background: transparent;
+  color: $primary;
+}
+
+.select2-container--default .select2-results__option[aria-selected='true'] {
+  background: $gray-100;
+  color: $primary;
+}
+
+.select2-results__option {
+  padding-left: 15px;
+
+  i {
+    width: 20px;
+    text-align: center;
+    margin-right: 3px;
+  }
+}
+
+.select-container {
+  position: relative;
+
+  .select-label {
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    color: $normal-text-color;
+    top: -9px;
+    left: 30px;
+    padding: 0 5px;
+    background: -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 1) 50%,
+                    rgba(255, 255, 255, 1) 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 1) 50%,
+                    rgba(255, 255, 255, 1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(
+                    to bottom,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 1) 50%,
+                    rgba(255, 255, 255, 1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(
+                    startColorstr='#00ffffff',
+                    endColorstr='#ffffff',
+                    GradientType=0
+    ); /* IE6-9 */
+  }
+}
+
+.select2-multi-select .select2-results__option {
+  padding: 0 !important;
+}
+
+.select2-multi-select .select2-selection__placeholder {
+  opacity: 0;
+}
+
+.select2-multi-select-description {
+  position: absolute;
+  color: $gray-400;
+  z-index: #{$zindex-select + 10};
+  top: 12px;
+  left: 16px;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  &, &:active, &:focus {
+    border: 1px solid #aaa;
+    outline: none;
+  }
+}
+
+// ng-select styling
+///////////////////////////
+
+.ng-select {
+  position: relative;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  overflow: visible;
+  cursor: pointer;
+}
+
+.ng-select .ng-has-value .ng-placeholder,
+.ng-select .ng-placeholder {
+  position: absolute;
+  z-index: 1;
+  color: $gray-500;
+  background: none;
+}
+
+.ng-select .ng-select-container {
+  border: $normal-border;
+  border-radius: $form-border-radius;
+  transition: $form-transition;
+
+  &:focus-within {
+    border-color: $primary;
+  }
+}
+
+.ng-select.ng-select-opened.ng-select-bottom > .ng-select-container {
+  // Overriding default theming.
+  border-bottom-right-radius: $form-border-radius;
+  border-bottom-left-radius: $form-border-radius;
+}
+
+.ng-dropdown-panel.ng-select-bottom,
+.ng-dropdown-panel-items.scroll-host {
+  border-radius: $form-border-radius;
+}
+
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  position: static !important;
+
+  & > input {
+    position: static !important;
+    z-index: 3;
+    height: unset;
+    line-height: 1.75rem;
+    letter-spacing: 0.01rem;
+    padding: 0 !important;
+  }
+}
+
+.ng-value-label {
+  letter-spacing: 0.01rem;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: auto;
+}
+
+.ng-select .ng-select-container .ng-value-container {
+  padding: $normal-padding-y $normal-padding-x !important;
+}
+
+.ng-value {
+  position: absolute;
+  z-index: 1;
+  background: none;
+  // minus left/right padding, minus room for arrow, clear-icon, etc...
+  width: calc(100% - #{$normal-padding-x} * 2 - 2rem);
+}
+
+.ng-select.ng-select-opened > .ng-select-container {
+  background: inherit;
+  border-color: inherit;
+}
+
+.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+  border-color: $primary;
+}
+
+.ng-select.ng-select-focused > .ng-select-container {
+  border-color: $primary;
+}
+
+.ng-dropdown-panel {
+  border: 0;
+  box-shadow: 0 0.25rem 0.5rem $gray-300;
+  z-index: $zindex-select !important;
+
+  &.ng-select-bottom {
+    margin-top: 0.5rem;
+  }
+
+  .ng-dropdown-panel-items {
+    .ng-option {
+      padding: 0.5rem 1rem;
+      border-left: $select-option-border-left;
+
+      &.ng-option-marked {
+        border-left-color: $select-option-active-border-left-color;
+        background-color: $select-option-active-background-color;
+      }
+    }
+  }
+}
+
+.ng-select.ng-select-disabled,
+.read-only .ng-select {
+  cursor: default !important;
+
+  .ng-select-container {
+    cursor: default !important;
+    border-color: $disabled-border-color;
+    background-color: $disabled-background-color;
+  }
+}
+
+.sm-form-submitted sm-select-control.ng-invalid,
+sm-select-control.ng-invalid.ng-touched {
+  .ng-select-container {
+    border-color: $invalid-border-color;
+    background-color: $invalid-background-color;
+  }
+}
+
+// Update the "arrow" icon. Suggestion from https://github.com/ng-select/ng-select/issues/544
+
+.ng-select .ng-arrow-wrapper .ng-arrow {
+  display: none !important;
+}
+
+.ng-select span.ng-arrow-wrapper:before {
+  content: "\e91c";
+  display: inline-block;
+  font-family: 'smicon';
+  font-size: 1.4rem;
+  text-rendering: auto;
+  color: $normal-border-color;
+  transition: $form-transition;
+}
+
+.ng-select-opened span.ng-arrow-wrapper:before {
+  transform: rotateZ(180deg);
+}
+
+// Update "clear" icon
+
+.ng-select .ng-clear-wrapper .ng-clear {
+  display: none !important;
+}
+
+.ng-select span.ng-clear-wrapper:before {
+  content: "\e92f";
+  display: inline-block;
+  font-family: 'smicon';
+  font-size: 0.7rem;
+  text-rendering: auto;
+  color: $normal-border-color;
+}
+

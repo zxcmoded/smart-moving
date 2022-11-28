@@ -1,0 +1,21 @@
+<sm-input-text-control [inputId]="inputId"
+                       [placeholder]="placeholder"
+                       [formControl]="$any(ngControl?.control)"
+                       [dataTestId]="dataTestId"
+                       [appendTemplateInfoArray]="[{ref: searchClearToggle, backgroundIsClear: true}]"
+                       #inputTextControl>
+</sm-input-text-control>
+
+<ng-template #searchClearToggle>
+  <span class="icon-search"
+        style="width: 1rem"
+        *ngIf="!ngControl?.control.value">
+  </span>
+  <!-- Gives a larger click area for mobile. Still not great, but better. -->
+  <div class="d-flex align-items-center cursor-pointer" style="height: 100%;" (click)="clear()">
+    <span class="icon-close sm-icon-smaller"
+          style="width: 1rem;"
+          *ngIf="ngControl?.control.value">
+    </span>
+  </div>
+</ng-template>

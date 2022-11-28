@@ -1,0 +1,143 @@
+<div class="w-100">
+  <div class="col-12 col-full">
+    <div class="heading-container">
+      <h2 class="font-weight-bold mb-4"> Company Details</h2>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="col-fixed-width pl-0">
+      <div class="card box-shadow-high">
+        <sm-loading-overlay *ngIf="isLoading"></sm-loading-overlay>
+
+        <form [formGroup]="companyDetailsForm" [smRequiredLabels]="companyDetailsForm" (submit)="updateCompanyDetails()" *ngIf="!isLoading">
+
+          <div class="card-header bg-white d-flex align-items-center">
+            <span class="font-weight-bold pl-2">Company Details</span>
+          </div>
+
+          <div class="card-body pb-1">
+
+            <div class="row">
+              <div class="col pr-2">
+                <div class="form-group">
+                  <label for="phoneNumber">Phone Number</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Phone Number" formControlName="phoneNumber" name="phoneNumber" id="phoneNumber"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="smsNumber">System SMS Number</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="SMS Number" formControlName="smsNumber" name="smsNumber" id="smsNumber"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col pr-2">
+                <sm-input-text-control inputId="stateLicenseNumber"
+                                       labelText="State License Number (optionally incl. label)"
+                                       formControlName="stateLicenseNumber"
+                                       placeholder="State License Number"
+                                       helpText="Example: 'DMV: 123456789'">
+                </sm-input-text-control>
+              </div>
+              <div class="col">
+                <sm-select-wrapper formControlName="ianaTzdbTimeZone"
+                                   name="ianaTzdbTimeZone"
+                                   itemProviderRoute="select-lists/time-zones"
+                                   placeholder="Time Zone"
+                                   [id]="'ianaTzdbTimeZone'">
+                </sm-select-wrapper>
+              </div>
+            </div>
+
+            <div class="col p-0">
+              <h3 class="mb-3">Address :</h3>
+              <div formGroupName="address">
+
+                <div class="row">
+                  <div class="col pr-2">
+                    <div class="form-group">
+                      <label for="street">Street</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Street" formControlName="street" name="street" id="street"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="City" formControlName="city" name="city" id="city"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col pr-2">
+                    <div class="form-group">
+                      <label for="state">State</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="State" formControlName="state" name="state" id="state"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="zipCode">Zip Code</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Zip Code" formControlName="zipCode" name="zipCode" id="zipCode"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="websiteAddress">Website Address</label>
+                    <div class="input-group">
+                      <input smEnsureHttpPrefix type="text" class="form-control" placeholder="Website Address" formControlName="websiteAddress" name="websiteAddress" id="websiteAddress"/>
+                    </div>
+                  </div>
+                  <div *ngIf="companyDetailsForm.touched && companyDetailsForm.get('websiteAddress').errors" class="feedback invalid-feedback"><i class="fa fa-warning"></i>
+                    This field is invalid
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" *smHasDevopsFlag>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="customerPortalUrl">Customer Portal Url</label>
+                    <div class="input-group">
+                      <input smEnsureHttpPrefix type="text" class="form-control" placeholder="Customer Portal Url" formControlName="customerPortalUrl" name="customerPortalUrl" id="customerPortalUrl"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card-footer bg-white d-flex justify-content-end py-3">
+            <button class="btn btn-success" [disabled]="companyDetailsForm.pristine || companyDetailsForm.invalid" type="submit">
+              Save Changes
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

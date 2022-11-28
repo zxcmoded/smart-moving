@@ -1,0 +1,107 @@
+﻿@import 'color-variables';
+@import 'icons-helpers';
+@import 'icons-variables';
+
+.sm-icon-smallest {
+  font-size: .55rem;
+}
+
+.sm-icon-smaller {
+  font-size: 0.7rem;
+}
+
+.sm-icon-small {
+  font-size: 0.85rem;
+}
+
+.sm-icon-normal {
+  font-size: 1rem;
+}
+
+.sm-icon-large {
+  font-size: 1.15rem;
+}
+
+.sm-icon-larger {
+  font-size: 1.3rem;
+}
+
+.sm-icon-largest {
+  font-size: 1.45rem;
+}
+
+.sm-icon-huge {
+  font-size: 2rem;
+}
+
+span[class*=icon-arrow-] {
+  transition: all 300ms;
+}
+
+.icon-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.icon-arrow-up {
+  display: inline-block;
+}
+
+// this icon is consistently too small, hence a global override
+.icon-drag-handle {
+  font-size: 1.3rem;
+}
+
+.icon-trash {
+  color: $warning;
+}
+
+.icon-disabled {
+  opacity: $sm-icon-disabled;
+}
+
+.btn-outline-danger {
+  &:hover {
+    span[class^=icon-] {
+      color: $white-600;
+    }
+  }
+}
+
+.copy-script-icon {
+  position: absolute;
+  cursor: pointer;
+  font-size: 20px;
+  top: 5px;
+  right: 5px;
+}
+
+.sm-icon-round-bg {
+  background-color: $blue-gray;
+  color: $primary;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.input-group {
+  .sm-icon-round-bg {
+    background-color: $blue-gray;
+    color: $primary;
+    padding: 0.25rem;
+    border-radius: 50%;
+  }
+}
+
+.sm-icon-with-badge {
+  position: relative;
+
+  span.sm-badge {
+    @extend .sm-overline;
+    position: absolute;
+    top: -.3rem;
+    right: -.45rem;
+  }
+}
+
+.fix-icon-alignment {
+  @include fixIconAlignment();
+}

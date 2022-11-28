@@ -1,0 +1,69 @@
+<div class="font-weight-light text-grey" *ngIf="showLabel">{{label}}</div>
+<div [autoClose]="'outside'"
+     class="cursor-pointer d-flex align-items-center"
+     [class.font-weight-bold]="useFontWeightBold"
+     [disablePopover]="disablePopover"
+     [popoverClass]="popoverClass"
+     #popover="ngbPopover"
+     [placement]="placement"
+     [container]="container"
+     [ngbPopover]="content">
+  <span class="display-value"
+        [attr.data-test-id]="finalDataTestId"
+        [ngClass]="disablePopover ? disabledTextClass ?? 'text-gray' : ''"
+        ngbTooltip="{{displayValue}}"
+        [disableTooltip]="displayValue?.length <= truncateDisplayLength">
+    {{displayValue | truncate:truncateDisplayLength}}
+  </span>
+  <span *ngIf="showArrow && (!hideArrowOnDisabled || (hideArrowOnDisabled && !disablePopover))" class="icon-arrow-down ml-1"></span>
+  <ng-template #content>
+    <ng-container *ngIf="searchable">
+      <div [style.width]="width" class="p-2 bg-blue-gray">
+        <div class="form-group mb-0">
+          <div class="input-group">
+            <input smStopClickPropagation
+                   type="text"
+                   class="form-control form-control-narrow"
+                   [formControl]="searchControl"
+                   placeholder="Search..."
+                   autofocus/>
+            <div class="input-group-append input-group-clear">
+              <span class="input-group-text input-group-text-narrow">
+                <span class="icon-search sm-icon-large"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator"></div>
+    </ng-container>
+    <div class="bg-white d-flex flex-wrap popover-container rounded"
+         [style.width]="width"
+         [style.max-width]="maxWidth"
+         [style.height]="height"
+         [style.max-height]="maxHeight">
+      <ng-container *ngFor="let option of options">
+        <div class="item d-flex align-items-center w-100 justify-content-between"
+             [class.disabled]="option.disabled"
+             (click)="!option.disabled && makeSelection(option); popover.close()"
+             [ngbTooltip]="option.disabled ? option.tooltipMessage : ''"
+             placement="right"
+             container="body"
+             [smScrollIntoView]="defaultValueToShow && option[this.valueProperty] === defaultValueToShow"
+             *ngIf="!searchControl.value || getDisplayValue(option)?.toLowerCase().includes(searchControl.value.toLowerCase())">
+          <div class="d-flex align-items-center w-100">
+            <div class="profile-badge bg-primary mr-2" *ngIf="option.initials">{{option.initials}}</div>
+            <div [ngClass]="option.optionClasses ? option.optionClasses : ''"
+                 class="label mr-auto"
+                 [attr.data-test-id]="finalDataTestId + option.name"
+                 ngbTooltip="{{getDisplayValue(option)}}"
+                 [disableTooltip]="getDisplayValue(option)?.length <= truncateOptionsDisplayLength">
+              {{getDisplayValue(option) | truncate:truncateOptionsDisplayLength}}
+            </div>
+            <div class="count" *ngIf="option.count">{{option?.count}}</div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-template>
+</div>

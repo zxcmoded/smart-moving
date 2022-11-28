@@ -1,0 +1,10 @@
+<div class="form-group"
+     [class.mb-0]="noMargin">
+  <label *ngIf="labelText">{{labelText}}</label>
+  <div class="input-group">
+    <input type="text" class="form-control pseudo-input-control dont-auto-focus" tabindex="-1" [attr.data-test-id]="finalDataTestId">
+    <div class="pseudo-input-contents" [attr.data-test-id]="finalDataTestId+'-pseudo-input'">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

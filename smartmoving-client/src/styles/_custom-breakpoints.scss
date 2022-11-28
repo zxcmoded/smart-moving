@@ -1,0 +1,28 @@
+$sm-breakpoint-custom-large: 2000px;
+$sm-breakpoint-custom-medium-large: 1600px;
+$sm-breakpoint-custom-medium: 1336px;
+$sm-breakpoint-custom-small: 1024px;
+
+@mixin media-breakpoint-custom-large {
+  @media screen and (max-width: $sm-breakpoint-custom-large) {
+    @content
+  }
+};
+
+@mixin media-breakpoint-custom-medium-large {
+  @media screen and (max-width: $sm-breakpoint-custom-medium-large) {
+    @content
+  }
+};
+
+@mixin media-breakpoint-custom-medium {
+  @media screen and (max-width: $sm-breakpoint-custom-medium) {
+    @content
+  }
+};
+
+@mixin media-breakpoint-custom-small {
+  @media screen and (max-width: $sm-breakpoint-custom-small) {
+    @content
+  }
+};

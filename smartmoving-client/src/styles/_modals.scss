@@ -1,0 +1,87 @@
+@import 'style-guide/color-variables';
+@import 'style-guide/font-weight-variables';
+@import 'style-guide/shadows-variables';
+@import 'custom-breakpoints';
+
+$modal-padding: 2rem;
+
+.mat-dialog-container {
+  box-shadow: $sm-shadow !important;
+  min-width: 500px;
+  background: $white-600;
+  border-radius: 9px !important;
+  padding: 0 !important;
+  max-height: 99vh !important;
+}
+
+.modal-overflow-visible .mat-dialog-container {
+  overflow: visible !important;
+}
+
+.modal-header {
+  border: 0;
+  align-items: center;
+  padding: $modal-padding $modal-padding 0 $modal-padding;
+
+  h2 {
+    margin: 0;
+    font-weight: $sm-font-weight-bolder;
+  }
+
+  &.modal-header-padded {
+    padding-bottom: $modal-padding;
+  }
+
+  &.modal-warn {
+    // TODO (Future story): Will be replaced by additional theme colors. ($red)
+    background-color: $red !important;
+    color: $white-600;
+    padding-bottom: $modal-padding;
+  }
+}
+
+.modal-body {
+  background-color: $white-600;
+  padding: $modal-padding;
+
+  // At small resolutions, the default margins are 1 pixel too much.
+  .row {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+}
+
+.modal-footer {
+  border: 0;
+  padding: 0 $modal-padding $modal-padding $modal-padding;
+
+  .btn + .btn {
+    margin-left: 1rem;
+  }
+}
+
+.modal-close {
+  text-decoration: none;
+  padding: 0;
+}
+
+.dialog-overflow-x-hidden .mat-dialog-container {
+  overflow-x: hidden;
+}
+
+.mat-dialog-full-screen-md {
+  width: 90%;
+  height: 90%;
+
+  @media screen and (max-width: $sm-breakpoint-custom-small),
+         screen and (max-height: 850px) {
+    width: 100%;
+    height: 100%;
+    max-width: none !important;
+
+    .mat-dialog-container {
+      max-height: none !important;
+      border-radius: 0 !important;
+    }
+  }
+}

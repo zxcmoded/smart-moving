@@ -1,0 +1,21 @@
+.default-input-style {
+  border: 1px solid #D8D8D8;
+  border-radius: 2px;
+  transition: all 300ms ease-out;
+}
+
+/*
+Why are all three `width` properties set for each column?  That's the most reliably way to ensure
+they have the correct size regardless of content.
+ */
+@mixin colWidth($targetWidth) {
+  max-width: $targetWidth;
+  min-width: $targetWidth;
+  width: $targetWidth;
+}
+
+@mixin colHeight($targetHeight) {
+  max-height: $targetHeight;
+  min-height: $targetHeight;
+  height: $targetHeight;
+}

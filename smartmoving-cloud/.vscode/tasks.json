@@ -1,0 +1,71 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "API - build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/SmartMoving.Api/SmartMoving.Api.csproj",
+        "/p:GenerateFullPaths=true"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Specs - build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/SmartMoving.IntegrationSpecs/SmartMoving.IntegrationSpecs.csproj",
+        "/p:GenerateFullPaths=true"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "MailChimp - build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/SmartMoving.MailChimpWebJobs/SmartMoving.MailChimpWebJobs.csproj",
+        "/p:GenerateFullPaths=true"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Functions - build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/SmartMoving.AzureFunctions/SmartMoving.AzureFunctions.csproj",
+        "/p:GenerateFullPaths=true"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Document Cleanup - build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/SmartMoving.DocumentCleanup/SmartMoving.DocumentCleanup.csproj",
+        "/p:GenerateFullPaths=true"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Document Reapply - build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/SmartMoving.DocumentReapply/SmartMoving.DocumentReapply.csproj",
+        "/p:GenerateFullPaths=true"
+      ],
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

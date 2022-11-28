@@ -1,0 +1,28 @@
+﻿@import 'color-variables';
+
+$normal-border-color: $gray-filled-400;
+$normal-text-color: $gray-500;
+$normal-background-color: $white-600;
+
+$border-width: 2px;
+$normal-border: $border-width solid $normal-border-color;
+$form-border-radius: 3px;
+
+$filled-text-color: $gray-600;
+
+$form-transition: all 100ms ease-out;
+
+$disabled-border-color: $gray-filled-300;
+$disabled-background-color: $gray-filled-100;
+
+$invalid-border-color: $warning;
+$invalid-background-color: $warning-000;
+
+$select-option-border-left: 0.125rem solid transparent;
+$select-option-active-border-left-color: $primary-400;
+$select-option-active-background-color: $primary-100;
+
+$normal-padding-x: 1rem;
+$narrow-padding-x: 0.5rem;
+
+$normal-padding-y: 0.5rem;

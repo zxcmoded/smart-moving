@@ -1,0 +1,226 @@
+﻿@import 'forms-variables';
+@import 'font-weight-variables';
+@import 'color-variables';
+
+label {
+  color: $normal-text-color;
+  font-weight: $sm-font-weight-bolder;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.02rem;
+  margin: 0.125rem 0;
+  cursor: pointer;
+}
+
+.form-text {
+  color: $normal-text-color;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.02rem;
+
+  i:first-of-type {
+    margin-right: 0.3rem;
+  }
+}
+
+.form-control {
+  // Bootstrap overrides
+  border: 0;
+  box-shadow: none !important;
+
+  padding: $normal-padding-y $normal-padding-x;
+  color: $filled-text-color;
+  height: unset;
+  line-height: 1.75rem;
+  letter-spacing: 0.01rem;
+  background-color: $normal-background-color;
+  transition: $form-transition;
+
+  &::placeholder {
+    color: $gray-400;
+    text-shadow: none;
+    border: 0;
+  }
+
+  &.form-control-narrow {
+    padding-left: $narrow-padding-x;
+    padding-right: $narrow-padding-x;
+  }
+}
+
+.input-group {
+  border: $normal-border;
+  border-radius: $form-border-radius;
+  transition: $form-transition;
+
+  &:focus-within {
+    border-color: $primary;
+  }
+}
+
+.input-group-sm {
+  border-width: 1px !important;
+
+  .sm-form-submitted .sm-form-group-invalid & .input-group-text,
+  .sm-form-submitted.sm-form-group-invalid & .input-group-text,
+  .sm-form-group-touched .sm-form-group-invalid & .input-group-text,
+  .sm-form-group-touched.sm-form-group-invalid & .input-group-text {
+    border-radius: 0;
+  }
+}
+
+.input-group-text {
+  border: 0;
+  padding-left: $normal-padding-x;
+  padding-right: $normal-padding-x;
+  transition: $form-transition;
+  background-color: $gray-filled-200;
+
+  &.input-group-text-narrow {
+    padding-left: $narrow-padding-x;
+    padding-right: $narrow-padding-x;
+  }
+
+  border-radius: 0;
+}
+
+.input-group-clear {
+  .input-group-text {
+    background-color: $normal-background-color;
+  }
+}
+
+@mixin invalid-input-group {
+  border-color: $invalid-border-color;
+  background-color: $invalid-background-color;
+}
+
+[class^='input-group-'] [class^='icon-'] {
+  color: $normal-border-color;
+}
+
+.sm-form-submitted,
+.sm-form-group-touched {
+  .sm-form-group-invalid,
+  &.sm-form-group-invalid {
+    .input-group {
+      @include invalid-input-group;
+    }
+
+    .form-control {
+      background-color: $invalid-background-color;
+    }
+
+    .input-group-text {
+      background-color: $invalid-border-color;
+    }
+
+    .input-group-clear .input-group-text {
+      background-color: $invalid-background-color;
+    }
+  }
+}
+
+// Pseudo-elements and custom controls
+.sm-form-submitted .is-custom-control.ng-invalid,
+.is-custom-control.ng-touched.ng-invalid {
+  .input-group {
+    @include invalid-input-group;
+
+    .pseudo-input-control {
+      background-color: $invalid-background-color;
+    }
+  }
+}
+
+// Marked with !important, as we want disabled to show over
+// invalid or other states.
+.sm-form-group-disabled:not(.sm-form-group-ignore-disabled-styling),
+fieldset:disabled :not(.sm-form-group-ignore-disabled-styling) {
+  .input-group {
+    border-color: $disabled-border-color !important;
+
+    .input-group-text {
+      background-color: $gray-filled-200 !important;
+    }
+  }
+
+  .form-control:disabled,
+  .form-control[readonly],
+  .input-group-clear .input-group-text,
+  div.form-control {
+    background-color: $disabled-background-color !important;
+  }
+}
+
+.sm-form-group-ignore-disabled-styling {
+  .form-control {
+    // Overriding bootstrap default.
+    background-color: $normal-background-color !important;
+  }
+}
+
+// Remove arrow spinners from <input type='number' />
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.pseudo-input-control {
+  color: transparent; // Make 100% sure we don't show any text
+  pointer-events: none;
+}
+
+.pseudo-input-contents {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: $normal-padding-y $normal-padding-x;
+}
+
+// A helper class when you need the border, but it's not an input element.
+// Probably shouldn't be used much?
+.form-border {
+  border: $normal-border;
+  border-radius: $form-border-radius;
+}
+
+// Set by our read-only directive.
+.read-only {
+  pointer-events: none;
+
+  // This matches how we do it for buttons.
+  &:not(.btn-primary) {
+    color: $gray-600 !important;
+  }
+
+  button {
+    opacity: 0.65;
+  }
+
+  // Some explicit overrides because we love !important.
+  // This is needed for click-to-edit at the least.
+  .text-primary, .sm-text-primary {
+    color: $gray-600 !important;
+    opacity: 1;
+  }
+
+  .icon-arrow-down {
+    display: none;
+  }
+
+  .input-group-clear {
+    background-color: transparent !important;
+  }
+}

@@ -1,0 +1,42 @@
+<div class="form-group form-check"
+     [class.form-check-right]="rightMode"
+     [class.form-check-padded]="paddedBackground"
+     [class.form-check-align-with-inputs]="alignWithInputs"
+     [class.mb-0]="noMargin"
+     (click)="handleLabelClick()">
+  <div class="input-group"
+       [class.sm-bg-gray-100]="paddedBackground"
+       [class.border-0]="!paddedBackground">
+    <label class="form-check-label"
+           [attr.for]="inputId"
+           *ngIf="rightMode"
+           smStopClickPropagation>
+      <ng-container *ngIf="!labelTemplateRef">{{labelText}}</ng-container>
+      <ng-template *ngIf="labelTemplateRef" [ngTemplateOutlet]="labelTemplateRef"></ng-template>
+    </label>
+    <input *ngIf="!ngControl?.control"
+           type="checkbox"
+           class="form-check-input"
+           [attr.name]="finalInputName"
+           [attr.id]="inputId"
+           [required]="isRequired"
+           smStopClickPropagation
+           [attr.data-test-id]="finalDataTestId">
+    <input *ngIf="ngControl?.control"
+           type="checkbox"
+           class="form-check-input"
+           [formControl]="$any(ngControl?.control)"
+           [attr.name]="finalInputName"
+           [attr.id]="inputId"
+           [required]="isRequired"
+           smStopClickPropagation
+           [attr.data-test-id]="finalDataTestId">
+    <label class="form-check-label"
+           [attr.for]="inputId"
+           *ngIf="!rightMode"
+           smStopClickPropagation>
+      <ng-container *ngIf="!labelTemplateRef">{{labelText}}</ng-container>
+      <ng-template *ngIf="labelTemplateRef" [ngTemplateOutlet]="labelTemplateRef"></ng-template>
+    </label>
+  </div>
+</div>

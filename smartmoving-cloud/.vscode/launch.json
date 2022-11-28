@@ -1,0 +1,122 @@
+{
+   // Use IntelliSense to find out which attributes exist for C# debugging
+   // Use hover for the description of the existing attributes
+   // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+   "version": "0.2.0",
+   "configurations": [
+        {
+            "name": "API - Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "API - build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/SmartMoving.Api/bin/Debug/netcoreapp3.1/SmartMoving.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/SmartMoving.Api",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": true,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            },
+            "logging": {
+                "moduleLoad": false,
+                "engineLogging": false
+            }
+        },
+        {
+            "name": "MailChimp - Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "MailChimp - build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/SmartMoving.MailChimpWebJobs/bin/Debug/netcoreapp3.1/SmartMoving.MailChimpWebJobs.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/SmartMoving.MailChimpWebJobs",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": true,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "logging": {
+                "moduleLoad": false,
+                "engineLogging": false
+            }
+        },
+        {
+            "name": "Document Cleanup - Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Document Cleanup - build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/SmartMoving.DocumentCleanup/bin/Debug/netcoreapp3.1/SmartMoving.DocumentCleanup.dll",
+            "args": [
+                "Server=(localdb)\\mssqllocaldb;Database=SmartMovingDev_V1;Trusted_Connection=True;MultipleActiveResultSets=true",
+                "https://localhost:44308",
+            ],
+            "cwd": "${workspaceFolder}/src/SmartMoving.DocumentCleanup",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "logging": {
+                "moduleLoad": false,
+                "engineLogging": false
+            }
+        },
+        {
+            "name": "Document Reapply - Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Document Reapply - build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/SmartMoving.DocumentReapply/bin/Debug/netcoreapp3.1/SmartMoving.DocumentReapply.dll",
+            "args": [
+                "Server=(localdb)\\mssqllocaldb;Database=SmartMovingDev_V1;Trusted_Connection=True;MultipleActiveResultSets=true",
+                "2019/01/01",
+                "2020/04/01"
+            ],
+            "cwd": "${workspaceFolder}/src/SmartMoving.DocumentReapply",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "logging": {
+                "moduleLoad": false,
+                "engineLogging": false
+            }
+        }
+    ,]
+}

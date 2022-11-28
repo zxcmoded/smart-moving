@@ -1,0 +1,43 @@
+@import '~styles/variables';
+@import '~styles/style-guide/forms-variables';
+
+:host > div {
+  display: inline-block;
+}
+
+:host-context([maintain-height]) {
+  div {
+    height: 30px;
+    line-height: 30px;
+  }
+}
+:host-context([large-editing]) {
+  input {
+    max-width: initial;
+    width: 100%;
+  }
+}
+:host-context([text-right]) {
+  input {
+    text-align: right;
+  }
+}
+input {
+  width: auto;
+  padding: 0;
+  background-color: $primary-100;
+  text-align: center;
+  border-width: 0;
+  border-bottom-width: $border-width;
+  margin: 0 0 -#{$border-width};
+  outline: 0;
+
+  &.invalid {
+    border-color: $invalid-border-color;
+    background-color: $invalid-background-color;
+  }
+}
+
+textarea {
+  border: $normal-border;
+}

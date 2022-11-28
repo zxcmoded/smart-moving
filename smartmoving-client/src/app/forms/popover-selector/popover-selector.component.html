@@ -1,0 +1,34 @@
+<div class="font-weight-light text-grey">{{label}}</div>
+<div [autoClose]="'outside'"
+     class="cursor-pointer"
+     [disablePopover]="disablePopover"
+     [popoverClass]="popoverClass"
+     #popover="ngbPopover"
+     [placement]="placement"
+     [container]="container"
+     [ngbPopover]="content">
+
+  <ng-content></ng-content>
+
+  <ng-template #content>
+    <div *ngIf="isLoading">Loading...</div>
+    <div class="bg-white d-flex flex-wrap popover-container rounded"
+         [style.width]="width"
+         [style.height]="height"
+         *ngIf="!isLoading">
+         <div class="item d-flex align-items-center w-100 justify-content-between"
+              [class.disabled]="option.disabled"
+              *ngFor="let option of options"
+              (click)="!option.disabled && change.emit(option); popover.close()"
+              [ngbTooltip]="option.disabled ? option.tooltipMessage : ''"
+              placement="right"
+              container="body">
+        <div class="d-flex align-items-center w-100"
+             ngbTooltip="{{getOptionDisplayValue(option)}}"
+             [disableTooltip]="option.disabled || (getOptionDisplayValue(option)?.length <= truncateDisplayLength)">
+          <div class="label mr-auto">{{getOptionDisplayValue(option) | truncate:truncateDisplayLength}}</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

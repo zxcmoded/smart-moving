@@ -1,0 +1,17 @@
+<div class="main col-12 pl-4 pr-0 py-4 d-flex align-items-stretch">
+  <div class="col-fixed p-4 bg-white box-shadow-high settings">
+    <ng-container *smHasPermission="[Permission.Settings]">
+      <h3 id="navCompanySettingsSection" class="font-weight-light d-flex" (click)="sectionClicked(sections.CompanySettingsSection)" [class.active]="activeSection === sections.CompanySettingsSection">
+        Company Settings
+        <span class="sm-icon-largest ml-auto icon-arrow-right" [class.icon-rotate-90]="activeSection === sections.CompanySettingsSection"></span>
+      </h3>
+      <ul>
+        <li routerLinkActive="active"><a id="navCompanySettingsCompany" routerLink="/settings/company">Company</a></li>
+      </ul>
+    </ng-container>
+
+  </div>
+  <div class="settings-content w-100">
+    <router-outlet></router-outlet>
+  </div>
+</div>

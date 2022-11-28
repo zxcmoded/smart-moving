@@ -1,0 +1,20 @@
+<!-- This black magic is what allows our CSS-based truncation to work inside a table cell. -->
+<div class="position-relative" *ngIf="isInTableCell; else noWrapperTmpl">
+  <div class="position-absolute" style="left: 0; right: 0">
+    <ng-container *ngTemplateOutlet="truncatedContentTmpl"></ng-container>
+  </div>
+</div>
+<ng-template #noWrapperTmpl>
+  <ng-container *ngTemplateOutlet="truncatedContentTmpl"></ng-container>
+</ng-template>
+<ng-template #truncatedContentTmpl>
+  <!-- Keep the two text/inner html in sync for styling and whatnot -->
+  <ng-container *ngIf="!innerHtmlText; else innerHtmlTextTemplate">
+    <span class="text-overflow-ellipsis d-inline-block mw-100" [container]="appendToBody ? 'body' : null" [placement]="tooltipPlacement" [ngbTooltip]="text" smNgbTooltipEnableOnOverflow>{{text}}</span>
+  </ng-container>
+
+  <ng-template #innerHtmlTextTemplate>
+    <span [innerHTML]="innerHtmlText" class="text-overflow-ellipsis d-inline-block mw-100" [ngbTooltip]="tooltipText" [container]="appendToBody ? 'body' : null" [placement]="tooltipPlacement" smNgbTooltipEnableOnOverflow></span>
+  </ng-template>
+</ng-template>
+

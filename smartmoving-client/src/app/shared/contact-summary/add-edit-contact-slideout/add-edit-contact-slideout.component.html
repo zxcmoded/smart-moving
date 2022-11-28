@@ -1,0 +1,84 @@
+<div class="offcanvas-content mt-3">
+  <form [formGroup]="formGroup" (submit)="submit()">
+    <div class="row">
+      <div class="col">
+        <sm-input-text-control labelText="Name"
+                               formControlName="name"
+                               placeholder="Customer Name">
+        </sm-input-text-control>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <sm-input-text-control labelText="Email Address"
+                               formControlName="emailAddress"
+                               inputType="email"
+                               placeholder="Email Address">
+        </sm-input-text-control>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <sm-input-text-control labelText="Phone Number"
+                               placeholder="Phone Number"
+                               formControlName="phoneNumber">
+        </sm-input-text-control>
+      </div>
+      <div class="col">
+        <sm-select-control formControlName="phoneType"
+                           itemProviderRoute="select-lists/phone-types"
+                           labelText="Phone Type"
+                           [isClearable]="false"
+                           placeholder="Phone Type">
+        </sm-select-control>
+      </div>
+    </div>
+
+    <div class="row"
+         formArrayName="secondaryPhoneNumbers"
+         *ngFor="let item of asFormArray(formGroup.get('secondaryPhoneNumbers')).controls; let i = index;">
+      <ng-container [formGroupName]="i">
+        <div class="col-6">
+          <sm-input-text-control labelText="Phone Number"
+                                 placeholder="Phone Number"
+                                 formControlName="phoneNumber">
+          </sm-input-text-control>
+        </div>
+        <div class="col-5">
+          <sm-select-control formControlName="phoneType"
+                             itemProviderRoute="select-lists/phone-types"
+                             labelText="Phone Type"
+                             [isClearable]="false"
+                             [isRequired]="true"
+                             placeholder="Phone Type">
+          </sm-select-control>
+        </div>
+        <div class="d-flex">
+          <button type="button" class="btn btn-text sm-text-warning" (click)="removePhone(i)">
+            <span class="icon-trash"></span>
+          </button>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-sm btn-text sm-text-primary" type="button" (click)="addPhone()">
+          <span class="icon-plus-circle"></span>
+          Add Phone
+        </button>
+      </div>
+    </div>
+
+    <div class="d-flex fixed-bottom sm-bg-gray-100 p-3 offcanvas-footer" *ngIf="!isSaving">
+      <button type="button" (click)="cancel()" class="btn btn-cancel">Cancel</button>
+      <button type="submit" class="btn btn-primary" [disabled]="formGroup.pristine || isSaving">{{(addMode ? 'Add' : 'Update')}} Contact</button>
+    </div>
+
+    <div class="d-flex fixed-bottom bg-secondary p-3 offcanvas-footer" *ngIf="isSaving">
+      <button type="submit" class="btn btn-primary m-0" disabled="">Saving <span class="fa fa-spin fa-spinner" *ngIf="isSaving"></span></button>
+    </div>
+  </form>
+</div>

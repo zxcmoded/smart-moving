@@ -1,0 +1,26 @@
+<div class="form-group">
+
+  <sm-input-label [control]="this"></sm-input-label>
+
+  <div class="input-group">
+    
+    <textarea [attr.autocomplete]="autocompleteValue"
+              [smAutoGrow]="autoGrow"
+              [autoGrowValue]="autoGrowValue"
+              type="text"
+              class="form-control"
+              [formControl]="$any(ngControl?.control)"
+              name="{{finalInputName}}"
+              id="{{inputId}}"
+              rows="{{rows}}"
+              placeholder="{{placeholder}}"
+              [maxlength]="textAreaMaxLength"
+              [required]="isRequiredControl"
+              [attr.data-test-id]="finalDataTestId">
+    </textarea>
+
+  </div>
+
+  <sm-input-help-text [control]="this"></sm-input-help-text>
+
+</div>

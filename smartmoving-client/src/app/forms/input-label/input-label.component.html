@@ -1,0 +1,26 @@
+<label [attr.for]="control.inputId"
+       *ngIf="control.showLabel"
+       [ngClass]="control.labelExtraCss"
+       (click)="handleClick($event)"
+       [class.w-100]="!!labelRowEndContent">
+  <ng-container *ngIf="!labelRowEndContent">
+    <ng-container [ngTemplateOutlet]="labelRef"></ng-container>
+  </ng-container>
+  
+  <ng-container *ngIf="labelRowEndContent">
+    <div class="d-flex">
+      <div>
+        <ng-container [ngTemplateOutlet]="labelRef"></ng-container>
+      </div>
+      <div class="ml-auto">
+        <ng-container [ngTemplateOutlet]="labelRowEndContent"></ng-container>
+      </div>
+    </div>
+  </ng-container>
+</label>
+
+<ng-template #labelRef>
+  <ng-container *ngIf="!control.labelTemplateRef">{{control.labelText}}</ng-container>
+  <ng-template *ngIf="control.labelTemplateRef" [ngTemplateOutlet]="control.labelTemplateRef"></ng-template>
+  <ng-container *ngIf="showRequiredAsterisk && control.isRequiredControl"> *</ng-container>
+</ng-template>

@@ -1,0 +1,88 @@
+@import '~styles/variables';
+@import '~styles/functions';
+@import '~styles/popovers';
+
+:host {
+  display: flex;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  &.open {
+    .profile-popover {
+      @extend .popover-animation__open;
+    }
+  }
+  > a {
+    background: #f49c20;
+    margin: 0 0 0 15px;
+    width: 28px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 14px;
+  }
+  .profile-popover {
+    position: absolute;
+    top: 45px;
+    width: 270px;
+    right: -10px;
+    @extend .popover-animation;
+  }
+  header {
+    position: relative;
+    height: 75px;
+    border-radius: 0.25rem 0.25rem 0 0;
+    &:before {
+      color: theme-color('primary');
+      right: 18px;
+      @extend .popover-arrow-up;
+    }
+  }
+  .nav-item {
+    .badge {
+      position: static;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: $gray-500;
+      font-size: 15px;
+      transition: all 300ms ease-out;
+    }
+    i,
+    [class^='icon-'],
+    [class*=' icon-'] { //Icons
+      color: $gray-500;
+      transition: all 300ms ease-out;
+      vertical-align: text-bottom;
+    }
+    .nav-link-logout {
+      color: $gray-600;
+      .fa {
+        color: $gray-600;
+      }
+    }
+    &:hover {
+      .nav-link,
+      .fa,
+      [class^='icon-'],
+      [class*=' icon-'] {
+        color: $gray-600;
+      }
+    }
+  }
+  .nav-item-logout {
+    border-top: 1px solid $gray-200;
+    margin-top: 10px;
+  }
+  .media-body {
+    p {
+      opacity: 0.8;
+    }
+  }
+}

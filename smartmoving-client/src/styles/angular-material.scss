@@ -1,0 +1,50 @@
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
+@import 'variables';
+
+$typography: mat.define-typography-config(
+        $font-family: $font-family-base
+);
+
+@include mat.core($typography);
+
+$smart-moving-primary: mat.define-palette(mat.$light-blue-palette);
+$smart-moving-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+
+$smart-moving-theme: mat.define-light-theme((
+        color: (
+                primary: $smart-moving-primary,
+                accent: $smart-moving-accent,
+        ),
+        typography: $typography,
+));
+
+// Include the theme styles for only specified components.
+@include mat.core-theme($smart-moving-theme);
+@include mat.datepicker-theme($smart-moving-theme);
+@include mat.chips-theme($smart-moving-theme);
+@include mat.autocomplete-theme($smart-moving-theme);
+@include mat.form-field-theme($smart-moving-theme);
+
+.cdk-overlay-container {
+  z-index: 2000 !important;
+}
+
+.mat-chip-list-wrapper {
+  .mat-chip.mat-standard-chip {
+    margin: 2px;
+    background-color: $primary;
+    color: $white-600;
+    border-radius: 5px;
+    min-height: 26px;
+
+    .mat-chip-with-trailing-icon {
+      padding-top: 2px;
+      padding-bottom: 2px;
+      padding-right: 6px;
+      padding-left: 6px;
+    }
+  }
+}
+
+

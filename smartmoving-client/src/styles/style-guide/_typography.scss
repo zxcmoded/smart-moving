@@ -1,0 +1,143 @@
+﻿@import 'color-variables';
+@import 'font-weight-variables';
+@import 'font-size-variables';
+
+// Sizing helpers
+
+.sm-font-size-smaller {
+  font-size: $sm-font-size-smaller;
+}
+
+.sm-font-size-small {
+  font-size: $sm-font-size-small;
+}
+
+.sm-font-size-normal {
+  font-size: $sm-font-size-normal;
+}
+
+.sm-font-size-large {
+  font-size: $sm-font-size-large;
+}
+
+.sm-font-size-larger {
+  font-size: $sm-font-size-larger;
+}
+
+.sm-font-size-largest {
+  font-size: $sm-font-size-largest;
+}
+
+// Headers
+
+h1, .h1 {
+  font-style: normal;
+  font-weight: $sm-font-weight-normal;
+  font-size: 2.125rem;
+  line-height: 2.625rem;
+}
+
+h2, .h2 {
+  font-style: normal;
+  font-weight: $sm-font-weight-normal;
+  font-size: $sm-font-size-larger;
+  line-height: 2.25rem;
+}
+
+h3, .h3 {
+  font-style: normal;
+  font-weight: $sm-font-weight-normal;
+  font-size: $sm-font-size-large;
+  line-height: 1.875rem;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+// Standard text
+p {
+  font-size: 1rem;
+  letter-spacing: 0.01rem;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+// Custom text types
+
+.sm-subtitle-01 {
+  font-style: normal;
+  font-weight: $sm-font-weight-normal;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01rem;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+.sm-subtitle-02 {
+  font-style: normal;
+  font-weight: $sm-font-weight-bolder;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.02em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+.sm-caption {
+  font-style: normal;
+  font-weight: $sm-font-weight-normal;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.01rem;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+.sm-overline {
+  font-style: normal;
+  font-weight: $sm-font-weight-bold;
+  font-size: 0.625rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+// Anchors
+a,
+a.link,
+.table a {
+  color: $primary;
+  text-decoration: none !important;
+  transition: all 300ms ease-out;
+
+  &:hover {
+    color: darken($primary, 10%);
+  }
+}
+
+// Misc
+
+.underline {
+  text-decoration: underline !important;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+// These aren't actually part of our style guide, so we probably shouldn't use them.
+
+h4, .h4 {
+  font-style: normal;
+  font-weight: $sm-font-weight-normal;
+}
+
+h5, .h5 {
+  font-style: normal;
+  font-weight: $sm-font-weight-normal;
+}
+
+h6, .h6 {
+  font-style: normal;
+  font-weight: $sm-font-weight-bold;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}

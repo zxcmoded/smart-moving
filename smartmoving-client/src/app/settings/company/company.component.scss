@@ -1,0 +1,15 @@
+@import '~styles/variables';
+
+.card-header,
+.card-footer {
+  border: 1px solid #eff4f6;
+}
+
+.color {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 10px;
+  top: 50%;
+  margin-top: -8px;
+}
